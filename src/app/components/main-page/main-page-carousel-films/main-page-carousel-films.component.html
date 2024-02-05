@@ -1,0 +1,13 @@
+<h1>Новинки</h1>
+
+<ng-container *ngIf="latestMovie$ | async as response">
+  <p-carousel [value]="response.docs" [numVisible]="6" [numScroll]="1" [showIndicators]="false">
+    <ng-template let-movie pTemplate="item">
+      <div class="carousel">
+        <img class="carousel__img" [src]="movie.poster.previewUrl" alt="preview">
+        <h4>{{movie.name}}</h4>
+      </div>
+    </ng-template>
+  </p-carousel>
+</ng-container>
+

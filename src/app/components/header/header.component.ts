@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {MovieService} from "../../shared/services/movie.service";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,14 +6,9 @@ import {MovieService} from "../../shared/services/movie.service";
   styleUrls: ['./header.component.scss'],
   host: {class: 'header'},
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent {
 
-  constructor(private _movieService: MovieService){}
-  ngOnInit(): void {
-    this._movieService.getLatestMovie().subscribe(v => {
-      console.log(v)
-    })
-  }
+  constructor(){}
 
 }
 

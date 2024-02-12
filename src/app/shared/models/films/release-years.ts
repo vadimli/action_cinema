@@ -1,6 +1,6 @@
 
 /*Года релизов*/
 export interface IReleaseYears {
-  start: number;
-  end: number;
+  start?: number;
+  end?: number;
 }

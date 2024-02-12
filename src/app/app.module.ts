@@ -4,17 +4,21 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {MaterialModule} from "./material.module";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HeaderComponent} from "./components/header/header.component";
 import {NgClass} from "@angular/common";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TokenInterceptors} from "./shared/classes/token.interceptor";
 import {MainPageModule} from "./components/main-page/main-page.module";
+import {MoviePageModule} from "./components/movie-page/movie-page.module";
+import {RouterModule} from "@angular/router";
+import {CoreModule} from "./core/core.module";
+import {PrimengModule} from "./primeng.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +27,11 @@ import {MainPageModule} from "./components/main-page/main-page.module";
     BrowserAnimationsModule,
     NgClass,
     HttpClientModule,
-    MainPageModule
+    MainPageModule,
+    MoviePageModule,
+    RouterModule,
+    CoreModule,
+    PrimengModule
   ],
   providers: [
     {

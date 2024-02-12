@@ -16,4 +16,7 @@ export enum TypeFilm {
 
   /*Мультсериал*/
   animatedSeries = 5,
+
+  /*TV-шоу*/
+  tvShow = 6,
 }

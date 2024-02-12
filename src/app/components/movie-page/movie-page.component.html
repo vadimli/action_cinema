@@ -1,1 +1,8 @@
-<p>movie-page works!</p>
+<ng-container *ngIf="movie$ | async as movie; else spinner">
+  <app-movie-page-main-info [movie]="movie"></app-movie-page-main-info>
+  <app-movie-page-detailed [movie]="movie"></app-movie-page-detailed>
+</ng-container>
+
+<ng-template #spinner>
+  <p-progressSpinner></p-progressSpinner>
+</ng-template>

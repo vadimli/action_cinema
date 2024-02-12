@@ -1,13 +1,19 @@
-<h1>Новинки</h1>
-
-<ng-container *ngIf="latestMovie$ | async as response">
-  <p-carousel [value]="response.docs" [numVisible]="6" [numScroll]="1" [showIndicators]="false">
+<ng-container *ngIf="latestMovie$ | async as response; else skeleton">
+  <p-carousel [value]="response.docs" [numVisible]="8" [numScroll]="1" [showIndicators]="false">
+    <ng-template pTemplate="header">
+      <h1>Новинки</h1>
+    </ng-template>
     <ng-template let-movie pTemplate="item">
-      <div class="carousel">
+      <a [routerLink]="['movie', movie.id]" class="carousel">
         <img class="carousel__img" [src]="movie.poster.previewUrl" alt="preview">
-        <h4>{{movie.name}}</h4>
-      </div>
+        <h4 class="carousel__title">{{movie.name}}</h4>
+      </a>
     </ng-template>
   </p-carousel>
 </ng-container>
+
+<ng-template #skeleton>
+  <p-skeleton width="10rem" height="4rem" styleClass="mb-2"></p-skeleton>
+  <p-skeleton width="100%" height="19rem" styleClass="mb-4"></p-skeleton>
+</ng-template>
 

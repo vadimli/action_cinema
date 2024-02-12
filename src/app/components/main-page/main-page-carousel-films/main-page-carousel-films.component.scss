@@ -1,10 +1,15 @@
 .carousel{
   width: 100%;
   height: 100%;
+  text-decoration: none;
+  color: white;
 
   &__img {
-    width: 90%;
-    height: 80%;
+    width: 85%;
+    height: 75%;
+  }
+  .skeleton__header {
+    margin-bottom: 2rem;
   }
 }
 

@@ -1,0 +1,23 @@
+:host {
+  display: block;
+  padding: 0 6rem;
+}
+
+.detailed-tabs {
+  max-width: 50%;
+
+  &__text {
+    line-height: 2rem;
+  }
+
+  &__list {
+    display: inline-grid;
+    grid-gap: 1.6rem 2.4rem;
+    grid-column-gap: 2.8rem;
+    grid-template-columns: 6rem 1fr;
+
+    &-title {
+      color: rgba(255,255,255,.56);
+    }
+  }
+}

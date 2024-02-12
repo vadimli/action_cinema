@@ -1,0 +1,22 @@
+<p-divider></p-divider>
+<div class="detailed-tabs">
+  <p-tabView>
+    <p-tabPanel header="Описание">
+      <p class="detailed-tabs__text">{{movie.description}}</p>
+    </p-tabPanel>
+    <p-tabPanel header="Информация">
+      <div class="detailed-tabs__list">
+        <span class="detailed-tabs__list-title">Страна</span>
+        <span>{{movie.countries | getNameInObject}}</span>
+        <span class="detailed-tabs__list-title">Жанр</span>
+        <span>{{movie.genres | getNameInObject}}</span>
+        <span class="detailed-tabs__list-title">Оригинальное название</span>
+        <span>{{movie.alternativeName || movie.name}}</span>
+        <span class="detailed-tabs__list-title">Премьера</span>
+        <span>{{movie.premiere.world | date: 'dd.MM.yyyy'}}</span>
+      </div>
+
+    </p-tabPanel>
+  </p-tabView>
+</div>
+

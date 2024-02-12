@@ -18,5 +18,4 @@ export class MainPageCarouselFilmsComponent implements OnInit {
   ngOnInit(): void {
     this.latestMovie$ = this._movieService.getLatestMovie();
   }
-
 }

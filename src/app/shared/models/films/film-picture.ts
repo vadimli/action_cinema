@@ -1,6 +1,8 @@
 
 /*URL для картинок*/
 export interface IFilmPicture {
-  url: string;
-  previewUrl?: string;
+
+  /*Чтобы найти фильмы с этим полем, используйте: !null*/
+  url?: string | null;
+  previewUrl?: string | null;
 }

@@ -1,8 +1,8 @@
-import {IShortFilmInfo} from "./films/short-film-info";
+import {IFilm} from "./films/film";
 
 /*Ответ API с фильмами*/
 export interface IApiResponse {
-  docs: IShortFilmInfo[];
+  docs: IFilm[];
   limit: number;
   page: number;
   pages: number;

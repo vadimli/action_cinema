@@ -1,7 +1,7 @@
-<ng-container *ngIf="latestMovie$ | async as response; else skeleton">
+<ng-container *ngIf="movie$ | async as response; else skeleton">
   <p-carousel [value]="response.docs" [numVisible]="8" [numScroll]="1" [showIndicators]="false">
     <ng-template pTemplate="header">
-      <h1>Новинки</h1>
+      <h1>{{selectionFilms.header}}</h1>
     </ng-template>
     <ng-template let-movie pTemplate="item">
       <a [routerLink]="['movie', movie.id]" class="carousel">
@@ -16,4 +16,9 @@
   <p-skeleton width="10rem" height="4rem" styleClass="mb-2"></p-skeleton>
   <p-skeleton width="100%" height="19rem" styleClass="mb-4"></p-skeleton>
 </ng-template>
+
+
+
+
+
 

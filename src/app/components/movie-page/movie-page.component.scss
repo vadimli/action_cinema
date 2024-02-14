@@ -1,4 +1,13 @@
 :host {
   display: block;
-  text-align: center;
+  padding: 1rem 6rem 5rem;
+  flex: 1 0 auto;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
 }

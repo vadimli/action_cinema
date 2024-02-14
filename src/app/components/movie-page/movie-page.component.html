@@ -1,8 +1,12 @@
 <ng-container *ngIf="movie$ | async as movie; else spinner">
   <app-movie-page-main-info [movie]="movie"></app-movie-page-main-info>
+  <p-divider></p-divider>
   <app-movie-page-detailed [movie]="movie"></app-movie-page-detailed>
+  <app-persons-carousel [persons]="movie.persons"></app-persons-carousel>
 </ng-container>
 
 <ng-template #spinner>
-  <p-progressSpinner></p-progressSpinner>
+  <div class="spinner">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
 </ng-template>

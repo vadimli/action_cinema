@@ -11,8 +11,6 @@ export class MoviePageMainInfoComponent implements OnInit{
 
   @Input() public movie: IFilm;
 
-  public defaultCinemaImg: string = '../../../../assets/img/cinema.jpg';
-
   constructor() {
   }
 

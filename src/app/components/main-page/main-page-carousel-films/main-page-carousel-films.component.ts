@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MovieService} from "../../../shared/services/movie.service";
 import {Observable} from "rxjs";
-import {IShortFilmInfo} from "../../../shared/models/films/short-film-info";
 import {IApiResponse} from "../../../shared/models/api-response";
+import {MainPageConfigItem} from "../main-page.config";
 
 
 @Component({
@@ -12,10 +12,12 @@ import {IApiResponse} from "../../../shared/models/api-response";
 })
 export class MainPageCarouselFilmsComponent implements OnInit {
 
-  public latestMovie$: Observable<IApiResponse> = new Observable();
+  @Input() public selectionFilms: MainPageConfigItem;
+
+  public movie$: Observable<IApiResponse> = new Observable();
 
   constructor(private _movieService: MovieService){}
   ngOnInit(): void {
-    this.latestMovie$ = this._movieService.getLatestMovie();
+    this.movie$ = this._movieService.getMovieByOptions(this.selectionFilms.url);
   }
 }

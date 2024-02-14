@@ -14,11 +14,14 @@ import {MoviePageModule} from "./components/movie-page/movie-page.module";
 import {RouterModule} from "@angular/router";
 import {CoreModule} from "./core/core.module";
 import {PrimengModule} from "./primeng.module";
+import {FooterComponent} from "./components/footer/footer.component";
+import {PersonPageModule} from "./components/person-page/person-page.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import {PrimengModule} from "./primeng.module";
     MoviePageModule,
     RouterModule,
     CoreModule,
-    PrimengModule
+    PrimengModule,
+    PersonPageModule
   ],
   providers: [
     {

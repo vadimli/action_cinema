@@ -1,7 +1,10 @@
 :host {
   display: block;
-  padding: 1rem 6rem 5rem;
   flex: 1 0 auto;
+}
+
+.carousel-container {
+  padding: 0 6rem;
 }
 
 .spinner {

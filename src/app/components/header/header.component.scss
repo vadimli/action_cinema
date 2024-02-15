@@ -4,7 +4,17 @@
 }
 
 .header__logo {
-  font-size: 28px;
+  font-size: 2.5rem;
   text-decoration: none;
-  color: white;
+  color: #2dd4bf;
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 2rem;
+  }
+
+  img {
+    width: 5rem;
+  }
 }

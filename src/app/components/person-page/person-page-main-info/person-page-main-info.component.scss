@@ -1,0 +1,35 @@
+.person {
+  display: flex;
+  padding: 2rem 6rem;
+  background: linear-gradient(25deg, rgb(0, 0, 0) 60%, rgb(45, 212, 191));
+
+  &__img {
+    width: 20%;
+  }
+
+  &__container {
+    margin-left: 2rem;
+  }
+
+  &__name {
+    margin-bottom: 30%;
+  }
+
+  &__info {
+
+    &-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding-left: 0;
+
+      li {
+        list-style-type: none;
+        display: inline-grid;
+        grid-gap: 2rem 3rem;
+        grid-column-gap: 2.8rem;
+        grid-template-columns: 10rem 1fr;
+      }
+    }
+  }
+}

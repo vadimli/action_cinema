@@ -8,6 +8,7 @@ import {CarouselModule} from "primeng/carousel";
 import {SharedModule} from "primeng/api";
 import {SkeletonModule} from "primeng/skeleton";
 import {RouterLink} from "@angular/router";
+import { GetValueInObjectPipe } from './pipes/get-value-in-object.pipe';
 
 
 
@@ -16,14 +17,16 @@ import {RouterLink} from "@angular/router";
     GetNameInObjectPipe,
     CorrectWordPipe,
     CheckColorRatingPipe,
-    PersonsCarouselComponent
+    PersonsCarouselComponent,
+    GetValueInObjectPipe
   ],
-  exports: [
-    GetNameInObjectPipe,
-    CorrectWordPipe,
-    CheckColorRatingPipe,
-    PersonsCarouselComponent
-  ],
+    exports: [
+        GetNameInObjectPipe,
+        CorrectWordPipe,
+        CheckColorRatingPipe,
+        PersonsCarouselComponent,
+        GetValueInObjectPipe
+    ],
   imports: [
     CommonModule,
     CarouselModule,

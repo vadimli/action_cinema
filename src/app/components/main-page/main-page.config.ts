@@ -1,9 +1,11 @@
 
 import dayjs from "dayjs";
+import {IShortFilmInfo} from "../../shared/models/films/short-film-info";
 
 export interface MainPageConfigItem {
   header: string;
-  url: string;
+  url?: string;
+  docs?: IShortFilmInfo[];
 }
 
 export function getLatestPeriod(): string {

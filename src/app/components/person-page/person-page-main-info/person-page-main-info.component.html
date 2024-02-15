@@ -1,0 +1,50 @@
+<ng-container *ngIf="person">
+  <div class="person">
+    <img class="person__img" [src]="person.photo" alt="Фото персоны"/>
+    <div class="person__container">
+      <div class="person__name">
+        <h1>{{person.name}}</h1>
+        <span *ngIf="person.enName" class="grey">{{person.enName}}</span>
+      </div>
+      <div class="person__info">
+        <h3>О персоне</h3>
+        <ul class="person__info-list">
+          <li>
+            <span class="person__info-list-title grey">Карьера</span>
+            <span class="person__info-list-item">{{person.profession | getValueInObject}}</span>
+          </li>
+          <li>
+            <span class="person__info-list-title grey">Дата рождения</span>
+            <span class="person__info-list-item">
+              {{person.birthday | date: 'dd.MM.yyyy'}}
+              <span *ngIf="!!person.age"> ({{person.age}})</span>
+            </span>
+          </li>
+          <li *ngIf="!!person.birthPlace.length">
+            <span class="person__info-list-title grey">Место рождения</span>
+            <span>{{person.birthPlace | getValueInObject}}</span>
+          </li>
+          <li *ngIf="!!person.death">
+            <span class="person__info-list-title grey">Дата смерти</span>
+            <span class="person__info-list-item">{{person.death | date: 'dd.MM.yyyy'}}
+            </span>
+          </li>
+          <li *ngIf="person.deathPlace.length">
+            <span class="person__info-list-title grey">Место смерти</span>
+            <span>{{person.deathPlace | getValueInObject}}</span>
+          </li>
+          <li *ngIf="!!person.growth">
+            <span class="person__info-list-title grey">Рост</span>
+            <span class="person__info-list-item">{{person.growth}} см</span>
+          </li>
+          <li *ngIf="!!person.countAwards">
+            <span class="person__info-list-title grey">Количество наград</span>
+            <span class="person__info-list-item">{{person.countAwards}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    </div>
+
+</ng-container>
+

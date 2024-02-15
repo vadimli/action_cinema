@@ -4,6 +4,8 @@ import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment.development";
 import {IApiResponse} from "../models/api-response";
 import {IFilm} from "../models/films/film";
+import {IPerson} from "../models/films/person";
+import {PersonFullInfo} from "../models/person/person-full-info";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +20,10 @@ export class MovieService {
 
   public getMovieById(id: number): Observable<IFilm> {
     return this._http.get<IFilm>(`${environment.apiUrl}movie/${id}`);
+  }
+
+  public getPersonById(id: number): Observable<PersonFullInfo> {
+    return this._http.get<PersonFullInfo>(`${environment.apiUrl}person/${id}`);
   }
 }
 

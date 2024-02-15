@@ -3,6 +3,8 @@ import {Observable, ReplaySubject, takeUntil} from "rxjs";
 import {IFilm} from "../../shared/models/films/film";
 import {MovieService} from "../../shared/services/movie.service";
 import {ActivatedRoute, Params} from "@angular/router";
+import {IPerson} from "../../shared/models/films/person";
+import {PersonFullInfo} from "../../shared/models/person/person-full-info";
 
 @Component({
   selector: 'app-person-page',
@@ -11,7 +13,7 @@ import {ActivatedRoute, Params} from "@angular/router";
 })
 export class PersonPageComponent implements OnInit, OnDestroy{
 
-  public movie$: Observable<IFilm> = new Observable<IFilm>();
+  public person$: Observable<PersonFullInfo> = new Observable<PersonFullInfo>();
   private destroy$: ReplaySubject<void> = new ReplaySubject<void>(1);
 
   constructor(private _movieService: MovieService,
@@ -19,9 +21,9 @@ export class PersonPageComponent implements OnInit, OnDestroy{
   }
 
   public ngOnInit(): void {
-    // this.route.params.pipe(takeUntil(this.destroy$)).subscribe((value: Params) => {
-    //   this.movie$ = this._movieService.getMovieById(value['id']);
-    // })
+    this.route.params.pipe(takeUntil(this.destroy$)).subscribe((value: Params) => {
+      this.person$ = this._movieService.getPersonById(value['id']);
+    })
   }
 
   public ngOnDestroy(): void {

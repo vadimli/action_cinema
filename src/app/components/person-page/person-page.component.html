@@ -1,1 +1,8 @@
-<p>person-page works!</p>
+<ng-container *ngIf="person$ | async as person; else spinner">
+  <app-person-page-main-info [person]="person"></app-person-page-main-info>
+</ng-container>
+<ng-template #spinner>
+  <div class="spinner">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+</ng-template>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MainPageCarouselFilmsComponent } from './main-page-carousel-films.component';
+import { FilmsCarouselComponent } from './films-carousel.component';
 
 describe('MainPageCarouselFilmsComponent', () => {
-  let component: MainPageCarouselFilmsComponent;
-  let fixture: ComponentFixture<MainPageCarouselFilmsComponent>;
+  let component: FilmsCarouselComponent;
+  let fixture: ComponentFixture<FilmsCarouselComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MainPageCarouselFilmsComponent]
+      declarations: [FilmsCarouselComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(MainPageCarouselFilmsComponent);
+
+    fixture = TestBed.createComponent(FilmsCarouselComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,11 +1,9 @@
 
 import dayjs from "dayjs";
-import {IShortFilmInfo} from "../../shared/models/films/short-film-info";
 
-export interface MainPageConfigItem {
+export interface CarouselConfigItem {
   header: string;
-  url?: string;
-  docs?: IShortFilmInfo[];
+  url: string;
 }
 
 export function getLatestPeriod(): string {
@@ -15,7 +13,7 @@ export function getLatestPeriod(): string {
   return `&premiere.world=${startDate}-${endDate}`;
 }
 
-export const MAIN_PAGE_CONFIG: MainPageConfigItem[] = [
+export const MAIN_PAGE_CONFIG: CarouselConfigItem[] = [
   {
     header: 'Новинки',
     url: 'movie?page=1&limit=15&rating.kp=6-10&typeNumber=1' + getLatestPeriod()

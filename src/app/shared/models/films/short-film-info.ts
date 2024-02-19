@@ -15,4 +15,5 @@ export interface IShortFilmInfo {
   general?: boolean;
   description?: string;
   enProfession?: string;
+  apiPicture?: string;
 }

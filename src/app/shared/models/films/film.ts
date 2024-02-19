@@ -170,4 +170,6 @@ export interface IFilm {
   /*Дата удаления*/
   deletedAt: string;
 
+  apiPicture?: string;
+
 }

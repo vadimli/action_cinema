@@ -4,8 +4,8 @@ import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment.development";
 import {IApiResponse} from "../models/api-response";
 import {IFilm} from "../models/films/film";
-import {IPerson} from "../models/films/person";
 import {PersonFullInfo} from "../models/person/person-full-info";
+import {IImage} from "../models/image/image";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,10 @@ export class MovieService {
 
   public getPersonById(id: number): Observable<PersonFullInfo> {
     return this._http.get<PersonFullInfo>(`${environment.apiUrl}person/${id}`);
+  }
+
+  public getImageById(id: number): Observable<IImage[]> {
+    return this._http.get<IImage[]>(`${environment.apiUrl}image?page=1&limit=10&notNullFields=previewUrl&movieId=${id}&type=cover`);
   }
 }
 

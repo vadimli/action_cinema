@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  padding: 0 6rem;
+}
+.detailed {
+  &__films {
+    display: flex;
+    justify-content: space-around;
+
+    &-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-link {
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

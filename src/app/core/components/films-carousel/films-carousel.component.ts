@@ -1,10 +1,10 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {MovieService} from "../../../shared/services/movie.service";
 import {ReplaySubject, takeUntil} from "rxjs";
-import {MainPageConfigItem} from "../../../components/main-page/main-page.config";
 import {IApiResponse} from "../../../shared/models/api-response";
 import {IFilm} from "../../../shared/models/films/film";
 import {IShortFilmInfo} from "../../../shared/models/films/short-film-info";
+import {CarouselConfigItem} from "../../../components/main-page/main-page.config";
 
 
 @Component({
@@ -14,7 +14,7 @@ import {IShortFilmInfo} from "../../../shared/models/films/short-film-info";
 })
 export class FilmsCarouselComponent implements OnInit, OnDestroy {
 
-  @Input() public selectionFilms: MainPageConfigItem;
+  @Input() public selectionFilms: CarouselConfigItem;
 
   public movie: IFilm[] | IShortFilmInfo[];
   private destroy$: ReplaySubject<void> = new ReplaySubject<void>(1);
@@ -22,14 +22,11 @@ export class FilmsCarouselComponent implements OnInit, OnDestroy {
 
   constructor(private _movieService: MovieService){}
   ngOnInit(): void {
-    if (!!this.selectionFilms.url) {
-      this._movieService.getMovieByOptions(this.selectionFilms.url).pipe(takeUntil(this.destroy$)).subscribe((value: IApiResponse) => {
+    this._movieService.getMovieByOptions(this.selectionFilms.url)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((value: IApiResponse) => {
         this.movie = value.docs;
-      });
-    }
-
-    this.movie = this.selectionFilms.docs;
-
+    });
   }
 
   public ngOnDestroy(): void {

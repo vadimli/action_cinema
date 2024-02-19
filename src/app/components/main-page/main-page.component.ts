@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MAIN_PAGE_CONFIG, MainPageConfigItem} from "./main-page.config";
+import {CarouselConfigItem, MAIN_PAGE_CONFIG} from "./main-page.config";
 
 
 
@@ -10,7 +10,7 @@ import {MAIN_PAGE_CONFIG, MainPageConfigItem} from "./main-page.config";
 })
 export class MainPageComponent implements OnInit {
 
-  public mainPageConfig: MainPageConfigItem[] = MAIN_PAGE_CONFIG;
+  public mainPageConfig: CarouselConfigItem[] = MAIN_PAGE_CONFIG;
 
   ngOnInit(): void {
 

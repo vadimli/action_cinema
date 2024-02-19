@@ -29,7 +29,7 @@
             <span class="person__info-list-item">{{person.death | date: 'dd.MM.yyyy'}}
             </span>
           </li>
-          <li *ngIf="person.deathPlace.length">
+          <li *ngIf="!!person.deathPlace?.length">
             <span class="person__info-list-title grey">Место смерти</span>
             <span>{{person.deathPlace | getValueInObject}}</span>
           </li>

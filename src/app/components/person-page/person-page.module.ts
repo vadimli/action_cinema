@@ -4,15 +4,27 @@ import {PersonPageComponent} from "./person-page.component";
 import { PersonPageMainInfoComponent } from './person-page-main-info/person-page-main-info.component';
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {CoreModule} from "../../core/core.module";
+import {PersonPageDetailedComponent} from "./person-page-detailed/person-page-detailed.component";
+import {DividerModule} from "primeng/divider";
+import {TabViewModule} from "primeng/tabview";
+import {RouterLink} from "@angular/router";
+
 
 
 
 @NgModule({
-  declarations: [PersonPageComponent, PersonPageMainInfoComponent],
+  declarations: [
+    PersonPageComponent,
+    PersonPageMainInfoComponent,
+    PersonPageDetailedComponent
+  ],
   imports: [
     CommonModule,
     ProgressSpinnerModule,
-    CoreModule
+    CoreModule,
+    DividerModule,
+    TabViewModule,
+    RouterLink
   ]
 })
 export class PersonPageModule { }

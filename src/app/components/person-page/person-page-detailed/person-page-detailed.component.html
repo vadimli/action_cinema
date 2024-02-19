@@ -1,0 +1,30 @@
+<p-divider></p-divider>
+<div class="detailed-tabs">
+  <p-tabView>
+    <p-tabPanel header="Лучшие работы">
+      <div class="detailed__films">
+        <ng-container *ngFor="let item of topFilms">
+          <div class="detailed__films-container">
+            <h2>{{item.title}}</h2>
+            <ng-container *ngFor="let film of item.films">
+              <a routerLink="/movie/{{film.id}}" class="detailed__films-link grey">{{film.name}}</a>
+            </ng-container>
+          </div>
+        </ng-container>
+
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Информация">
+      <div class="detailed-tabs__list">
+<!--        <span class="detailed-tabs__list-title">Страна</span>-->
+<!--        <span>{{movie.countries | getNameInObject}}</span>-->
+<!--        <span class="detailed-tabs__list-title">Жанр</span>-->
+<!--        <span>{{movie.genres | getNameInObject}}</span>-->
+<!--        <span class="detailed-tabs__list-title">Оригинальное название</span>-->
+<!--        <span>{{movie.alternativeName || movie.name}}</span>-->
+<!--        <span class="detailed-tabs__list-title">Премьера</span>-->
+<!--        <span>{{movie.premiere.world | date: 'dd.MM.yyyy'}}</span>-->
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+</div>

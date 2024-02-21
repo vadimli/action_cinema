@@ -5,7 +5,7 @@ import {IFilmPicture} from "./film-picture";
 /*Короткая информация о фильме, необходимая для отрисовки превью */
 export interface IShortFilmInfo {
   id: number;
-  rating: IRating;
+  rating: IRating | number;
   year?: number;
   name?: string;
   enName?: string;

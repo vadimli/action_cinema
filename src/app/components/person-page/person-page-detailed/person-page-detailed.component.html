@@ -11,20 +11,25 @@
             </ng-container>
           </div>
         </ng-container>
-
       </div>
     </p-tabPanel>
-    <p-tabPanel header="Информация">
-      <div class="detailed-tabs__list">
-<!--        <span class="detailed-tabs__list-title">Страна</span>-->
-<!--        <span>{{movie.countries | getNameInObject}}</span>-->
-<!--        <span class="detailed-tabs__list-title">Жанр</span>-->
-<!--        <span>{{movie.genres | getNameInObject}}</span>-->
-<!--        <span class="detailed-tabs__list-title">Оригинальное название</span>-->
-<!--        <span>{{movie.alternativeName || movie.name}}</span>-->
-<!--        <span class="detailed-tabs__list-title">Премьера</span>-->
-<!--        <span>{{movie.premiere.world | date: 'dd.MM.yyyy'}}</span>-->
-      </div>
+
+    <p-tabPanel *ngIf="!!awards.length" header="Награды">
+      <ng-container *ngFor="let award of awards">
+        <div class="detailed__award">
+          <h2>{{award.title}}</h2>
+          <ng-container *ngFor="let item of award.nominations">
+            <div class="detailed__award-item">
+              <span >{{item.nomination.award.year}}</span>
+              <span>
+                {{item.nomination.title}}
+                <span>({{item.winning ? 'Победа' : 'Номинация'}})</span>
+              </span>
+              <a routerLink="/movie/{{item.movie.id}}" class="detailed__films-link grey">{{item.movie.name}}</a>
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
     </p-tabPanel>
   </p-tabView>
 </div>

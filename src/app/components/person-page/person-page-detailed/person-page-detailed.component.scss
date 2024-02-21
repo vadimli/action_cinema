@@ -18,4 +18,15 @@
       }
     }
   }
+
+  &__award {
+    display: flex;
+    flex-direction: column;
+    &-item {
+      display: grid;
+      grid-template-columns: 20% 50% 30%;
+
+      margin-bottom: 1rem;
+    }
+  }
 }

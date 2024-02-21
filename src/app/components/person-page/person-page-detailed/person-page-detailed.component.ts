@@ -1,13 +1,20 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PersonFullInfo} from "../../../shared/models/person/person-full-info";
 import {IShortFilmInfo} from "../../../shared/models/films/short-film-info";
+import {INominationInfo} from "../../../shared/models/person/award";
 
 interface TopFilmsConfig {
   title: string;
   films: IShortFilmInfo[];
 }
 
-export type Profession = 'actor' | 'director' | 'producer' | 'cameo'
+interface AwardsConfig {
+  title: string;
+  nominations: INominationInfo[];
+}
+
+export type Profession = 'actor' | 'director' | 'producer' | 'cameo';
+export type Award = 'Оскар' | 'Золотой глобус';
 
 @Component({
   selector: 'app-person-page-detailed',
@@ -16,12 +23,16 @@ export type Profession = 'actor' | 'director' | 'producer' | 'cameo'
 })
 export class PersonPageDetailedComponent implements  OnInit{
   @Input() public person: PersonFullInfo;
+  @Input() public personAwards: INominationInfo[];
 
   public topFilms: TopFilmsConfig[] = [];
+  public awards: AwardsConfig[] = [];
+
   constructor() {}
 
   public ngOnInit(): void {
     this.getTopFilms();
+    this.getawards();
   }
 
   private getTopFilms(): void {
@@ -47,6 +58,30 @@ export class PersonPageDetailedComponent implements  OnInit{
         films: producerFilms
       });
     }
+  }
+
+  private getawards(): void {
+  const oscarFilms: INominationInfo[] = this.filterAwards('Оскар');
+  const goldGlobeFilms: INominationInfo[] = this.filterAwards('Золотой глобус');
+
+    if (!!oscarFilms.length) {
+      this.awards.push({
+        title: 'Оскар',
+        nominations: oscarFilms
+      });
+    }
+    if (!!goldGlobeFilms.length) {
+      this.awards.push({
+        title: 'Золотой глобус',
+        nominations: goldGlobeFilms
+      });
+    }
+  }
+
+  private filterAwards(award: Award): INominationInfo[] {
+    return this.personAwards
+      .filter((item: INominationInfo) => item.nomination.award.title === award)
+      .sort((a: INominationInfo, b: INominationInfo) => b.nomination.award.year - a.nomination.award.year);
   }
 
   private filterMoviesForPerson(profession: Profession): IShortFilmInfo[] {

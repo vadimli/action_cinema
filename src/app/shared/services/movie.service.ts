@@ -6,10 +6,12 @@ import {IApiResponse} from "../models/api-response";
 import {IFilm} from "../models/films/film";
 import {PersonFullInfo} from "../models/person/person-full-info";
 import {IImage} from "../models/image/image";
+import {IAwardRequest} from "../models/person/award";
 
 @Injectable({
   providedIn: 'root'
 })
+//TODO объединить методы с одинаковым адресом в один
 export class MovieService {
 
   constructor(private _http: HttpClient) { }
@@ -24,6 +26,10 @@ export class MovieService {
 
   public getPersonById(id: number): Observable<PersonFullInfo> {
     return this._http.get<PersonFullInfo>(`${environment.apiUrl}person/${id}`);
+  }
+
+  public getPersonAwards(id: string): Observable<IAwardRequest> {
+    return this._http.get<IAwardRequest>(`${environment.apiUrl}person/awards?page=1&limit=50&personId=${id}`);
   }
 
   public getImageById(id: number): Observable<IImage[]> {

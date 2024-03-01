@@ -16,7 +16,7 @@ export class FilmsCarouselComponent implements OnInit, OnDestroy {
 
   @Input() public selectionFilms: CarouselConfigItem;
 
-  public movie: IFilm[] | IShortFilmInfo[];
+  public movies: IFilm[] | IShortFilmInfo[];
   private destroy$: ReplaySubject<void> = new ReplaySubject<void>(1);
 
 
@@ -25,7 +25,7 @@ export class FilmsCarouselComponent implements OnInit, OnDestroy {
     this._movieService.getMovieByOptions(this.selectionFilms.url)
       .pipe(takeUntil(this.destroy$))
       .subscribe((value: IApiResponse) => {
-        this.movie = value.docs;
+        this.movies = value.docs;
     });
   }
 

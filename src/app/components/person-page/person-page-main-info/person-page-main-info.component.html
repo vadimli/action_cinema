@@ -20,7 +20,7 @@
               <span *ngIf="!!person.age"> ({{person.age}})</span>
             </span>
           </li>
-          <li *ngIf="!!person.birthPlace.length">
+          <li *ngIf="!!person.birthPlace?.length">
             <span class="person__info-list-title grey">Место рождения</span>
             <span>{{person.birthPlace | getValueInObject}}</span>
           </li>

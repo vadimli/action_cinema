@@ -1,7 +1,9 @@
-<ng-container *ngIf="movie; else skeleton">
-  <p-carousel [value]="movie" [numVisible]="8" [numScroll]="1" [showIndicators]="false">
+<ng-container *ngIf="movies; else skeleton">
+  <p-carousel [value]="movies" [numVisible]="8" [numScroll]="1" [showIndicators]="false">
     <ng-template pTemplate="header">
-      <h1>{{selectionFilms.header}}</h1>
+      <a routerLink="selection" [queryParams]="{type: selectionFilms.query}" class="header">
+        <h1>{{selectionFilms.header}}</h1>
+      </a>
     </ng-template>
     <ng-template let-movie pTemplate="item">
       <a routerLink="movie/{{movie.id}}" class="carousel">

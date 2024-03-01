@@ -16,8 +16,8 @@ export class MovieService {
 
   constructor(private _http: HttpClient) { }
 
-  public getMovieByOptions(url: string): Observable<IApiResponse> {
-    return this._http.get<IApiResponse>(`${environment.apiUrl}${url}`);
+  public getMovieByOptions(url: string, limit: number = 15, page: number = 1): Observable<IApiResponse> {
+    return this._http.get<IApiResponse>(`${environment.apiUrl}movie?page=${page}&limit=${limit}&${url}`);
   }
 
   public getMovieById(id: number): Observable<IFilm> {

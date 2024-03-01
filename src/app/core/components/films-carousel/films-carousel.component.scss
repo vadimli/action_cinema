@@ -10,3 +10,11 @@
   }
 }
 
+.header {
+  transition: .2s linear;
+
+  &:hover {
+    color: #2dd4bf;
+  }
+}
+

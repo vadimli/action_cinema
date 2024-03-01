@@ -10,6 +10,7 @@ import {SkeletonModule} from "primeng/skeleton";
 import {RouterLink} from "@angular/router";
 import {GetValueInObjectPipe} from './pipes/get-value-in-object.pipe';
 import {FilmsCarouselComponent} from "./components/films-carousel/films-carousel.component";
+import { EnterTheViewportNotifierDirective } from './directive/enter-the-viewport-notifier.directive';
 
 
 
@@ -21,15 +22,17 @@ import {FilmsCarouselComponent} from "./components/films-carousel/films-carousel
     PersonsCarouselComponent,
     GetValueInObjectPipe,
     FilmsCarouselComponent,
+    EnterTheViewportNotifierDirective,
   ],
-  exports: [
-    GetNameInObjectPipe,
-    CorrectWordPipe,
-    CheckColorRatingPipe,
-    PersonsCarouselComponent,
-    GetValueInObjectPipe,
-    FilmsCarouselComponent,
-  ],
+    exports: [
+        GetNameInObjectPipe,
+        CorrectWordPipe,
+        CheckColorRatingPipe,
+        PersonsCarouselComponent,
+        GetValueInObjectPipe,
+        FilmsCarouselComponent,
+        EnterTheViewportNotifierDirective,
+    ],
   imports: [
     CommonModule,
     CarouselModule,

@@ -11,7 +11,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TokenInterceptors} from "./shared/classes/token.interceptor";
 import {MainPageModule} from "./components/main-page/main-page.module";
 import {MoviePageModule} from "./components/movie-page/movie-page.module";
-import {RouterModule} from "@angular/router";
+import {RouterLinkActive, RouterModule} from "@angular/router";
 import {CoreModule} from "./core/core.module";
 import {PrimengModule} from "./primeng.module";
 import {FooterComponent} from "./components/footer/footer.component";
@@ -35,7 +35,8 @@ import {PersonPageModule} from "./components/person-page/person-page.module";
     RouterModule,
     CoreModule,
     PrimengModule,
-    PersonPageModule
+    PersonPageModule,
+    RouterLinkActive
   ],
   providers: [
     {

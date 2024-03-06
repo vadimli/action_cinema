@@ -23,3 +23,28 @@ a {
 .grey {
   color: rgba(255,255,255,.56);
 }
+
+.badge {
+  position: absolute;
+  bottom: 88%;
+  left: 4%;
+  color: #ffffff;
+  padding: .2rem;
+
+  &-white {
+    background-color: rgba(255,255,255,.56);
+  }
+
+  &-red {
+    background-color: #bd0404;
+  }
+
+  &-green {
+    background-color: #41a807;
+  }
+
+  &-gold {
+    background-color: #eec085;
+    color: black;
+  }
+}

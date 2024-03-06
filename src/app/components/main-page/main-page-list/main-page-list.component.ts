@@ -18,6 +18,7 @@ export class MainPageListComponent implements OnInit, OnDestroy{
   public activeSelection: CarouselConfigItem;
   private limit = 24;
   private page = 1;
+  public showSpinner = true;
 
 
   constructor(private _movieService: MovieService,
@@ -37,6 +38,9 @@ export class MainPageListComponent implements OnInit, OnDestroy{
     this._movieService.getMovieByOptions(this.activeSelection.url, limit ,page)
       .pipe(takeUntil(this.destroy$))
       .subscribe((value: IApiResponse) => {
+        if (!value.docs.length) {
+          this.showSpinner = false
+        }
         value.docs.forEach((item: IFilm) => {
           this.movies.push(item);
         });

@@ -8,7 +8,7 @@
     <ng-template let-movie pTemplate="item">
       <a routerLink="movie/{{movie.id}}" class="carousel">
         <img class="carousel__img" [src]="movie.poster.previewUrl" alt="preview">
-        <h4 class="carousel__title">{{movie.name}}</h4>
+        <div class="badge badge-{{movie.rating.kp | checkColorRating}}">{{movie.rating.kp | number: '1.1-1'}}</div>
       </a>
     </ng-template>
   </p-carousel>

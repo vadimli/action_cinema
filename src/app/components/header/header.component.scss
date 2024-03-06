@@ -1,20 +1,43 @@
 :host {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 1rem 6rem;
 }
 
-.header__logo {
-  font-size: 2.5rem;
-  text-decoration: none;
-  color: #2dd4bf;
-  display: flex;
-  align-items: center;
+.header {
+  &__logo{
+    font-size: 2.5rem;
+    text-decoration: none;
+    color: #2dd4bf;
+    display: flex;
+    align-items: center;
 
-  svg {
-    width: 2rem;
+    svg {
+      width: 2rem;
+    }
+
+    img {
+      width: 5rem;
+    }
   }
 
-  img {
-    width: 5rem;
+
+  &__nav {
+    font-weight: 700;
+    &-item {
+      font-size: 1rem;
+      color: rgba(255,255,255,.56);
+
+      &:not(:last-child) {
+        margin-right: 2rem;
+      }
+
+      &_active {
+        color: white;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #2dd4bf;
+      }
+    }
   }
 }

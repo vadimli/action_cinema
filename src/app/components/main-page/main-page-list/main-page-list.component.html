@@ -1,11 +1,15 @@
-<h1>{{activeSelection.header}}</h1>
-<div class="movie-list">
-  <ng-container *ngFor="let movie of movies">
-    <a routerLink="/movie/{{movie.id}}">
-      <img class="movie-list__img" [src]="movie.poster.url || movie.poster.previewUrl" loading="lazy" alt="preview">
-    </a>
-  </ng-container>
-</div>
+<ng-container *ngIf="movies.length > 20">
+  <h1>{{activeSelection.header}}</h1>
+  <div class="movie-list">
+    <ng-container *ngFor="let movie of movies">
+      <a class="movie-list__item" routerLink="/movie/{{movie.id}}">
+        <img class="movie-list__img" [src]="movie.poster.url || movie.poster.previewUrl" alt="preview">
+        <div class="badge badge-{{movie.rating.kp | checkColorRating}}">{{movie.rating.kp | number: '1.1-1'}}</div>
+      </a>
+    </ng-container>
+  </div>
+</ng-container>
+
 
 <!--Провоцируем вызов события onScroll-->
-<div class="spinner" appEnterTheViewportNotifier (visibilityChange)="onScroll($event)"><p-progressSpinner></p-progressSpinner></div>
+<div *ngIf="showSpinner" class="spinner" appEnterTheViewportNotifier (visibilityChange)="onScroll($event)"><p-progressSpinner></p-progressSpinner></div>

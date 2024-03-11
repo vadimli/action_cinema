@@ -5,6 +5,7 @@ import {ButtonModule} from 'primeng/button';
 import {TabViewModule} from 'primeng/tabview';
 import {SkeletonModule} from 'primeng/skeleton';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 
@@ -16,7 +17,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     ButtonModule,
     TabViewModule,
     SkeletonModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    DropdownModule
   ]
 })
 export class PrimengModule { }

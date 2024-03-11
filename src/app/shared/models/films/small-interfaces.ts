@@ -50,6 +50,11 @@ export interface IImagesInfo {
   framesCount?: number;
 }
 
+export interface SearchItem {
+  name: string;
+  slug: string;
+}
+
 
 
 

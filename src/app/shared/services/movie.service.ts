@@ -7,6 +7,9 @@ import {IFilm} from "../models/films/film";
 import {PersonFullInfo} from "../models/person/person-full-info";
 import {IImage} from "../models/image/image";
 import {IAwardRequest} from "../models/person/award";
+import {SearchItem} from "../models/films/small-interfaces";
+
+export const REQUIRED_FIELDS: string = 'notNullFields=poster.url&selectFields=poster&selectFields=id&selectFields=name&selectFields=year&selectFields=rating'
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +20,7 @@ export class MovieService {
   constructor(private _http: HttpClient) { }
 
   public getMovieByOptions(url: string, limit: number = 15, page: number = 1): Observable<IApiResponse> {
-    return this._http.get<IApiResponse>(`${environment.apiUrl}movie?page=${page}&limit=${limit}&${url}`);
+    return this._http.get<IApiResponse>(`${environment.apiUrl}movie?${REQUIRED_FIELDS}&page=${page}&limit=${limit}${url}`);
   }
 
   public getMovieById(id: number): Observable<IFilm> {
@@ -34,6 +37,10 @@ export class MovieService {
 
   public getImageById(id: number): Observable<IImage[]> {
     return this._http.get<IImage[]>(`${environment.apiUrl}image?page=1&limit=10&notNullFields=previewUrl&movieId=${id}&type=cover`);
+  }
+
+  public getGenres(): Observable<SearchItem[]> {
+    return this._http.get<SearchItem[]>(`https://api.kinopoisk.dev/v1/movie/possible-values-by-field?field=genres.name`);
   }
 }
 

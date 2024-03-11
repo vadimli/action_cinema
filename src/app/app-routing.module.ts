@@ -7,7 +7,9 @@ import {MainPageListComponent} from "./components/main-page/main-page-list/main-
 
 let routes: Routes = [
   {path: '', component: MainPageComponent},
-  {path: 'selection', component: MainPageListComponent},
+  {path: 'movie', component: MainPageListComponent},
+  {path: 'tv-series', component: MainPageListComponent},
+  {path: 'cartoon', component: MainPageListComponent},
   {path: 'movie/:id', component: MoviePageComponent},
   {path: 'person/:id', component: PersonPageComponent},
 ];

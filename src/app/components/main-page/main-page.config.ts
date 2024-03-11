@@ -1,10 +1,12 @@
 
 import dayjs from "dayjs";
+import {SearchItem} from "../../shared/models/films/small-interfaces";
 
 export interface CarouselConfigItem {
   header: string;
   url: string;
-  query: string;
+  slug: string;
+  name?: string;
 }
 
 export function getLatestPeriod(): string {
@@ -15,34 +17,34 @@ export function getLatestPeriod(): string {
 }
 
 export const MAIN_PAGE_CONFIG: CarouselConfigItem[] = [
+  // {
+  //   header: 'Новинки',
+  //   url: '&rating.kp=6-10&typeNumber=1' + getLatestPeriod(),
+  //   slug: 'new'
+  // },
+  // {
+  //   header: 'ТОП-250 Кинопоиска',
+  //   url: `&typeNumber=1&lists=top250`,
+  //   slug: 'top250',
+  // },
   {
-    header: 'Новинки',
-    url: 'rating.kp=6-10&typeNumber=1' + getLatestPeriod(),
-    query: 'new'
+    header: 'Драма',
+    url: `&typeNumber=1&rating.kp=6.5-10&genres.name=драма`,
+    slug: 'драма',
   },
   {
-    header: 'ТОП-250 Кинопоиска',
-    url: `typeNumber=1&lists=top250`,
-    query: 'top250'
-  },
-  {
-    header: 'Драмы',
-    url: `typeNumber=1&rating.kp=6.5-10&genres.name=%D0%B4%D1%80%D0%B0%D0%BC%D0%B0&lists=!top250`,
-    query: 'drama'
-  },
-  {
-    header: 'Комедии',
-    url: `typeNumber=1&rating.kp=6.5-10&genres.name=%D0%BA%D0%BE%D0%BC%D0%B5%D0%B4%D0%B8%D1%8F&lists=!top250`,
-    query: 'comedy'
+    header: 'Комедия',
+    url: `&typeNumber=1&rating.kp=6.5-10&genres.name=комедия`,
+    slug: 'комедия'
   },
   // {
   //   header: 'Сериалы',
   //   url: `movie?page=1&limit=15&typeNumber=1&lists=top-100-movies`
   // },
   {
-    header: 'Боевики',
-    url: `typeNumber=1&rating.kp=6.5-10&genres.name=%D0%B1%D0%BE%D0%B5%D0%B2%D0%B8%D0%BA&lists=!top250`,
-    query: 'action'
+    header: 'Боевик',
+    url: `&typeNumber=1&rating.kp=6.5-10&genres.name=боевик`,
+    slug: 'боевик'
   },
   // {
   //   header: 'Мультфильмы',
@@ -50,11 +52,39 @@ export const MAIN_PAGE_CONFIG: CarouselConfigItem[] = [
   // },
   {
     header: 'Фантастика',
-    url: `typeNumber=1&rating.kp=6.5-10&genres.name=%D1%84%D0%B0%D0%BD%D1%82%D0%B0%D1%81%D1%82%D0%B8%D0%BA%D0%B0&lists=!top250`,
-    query: 'fantasy'
+    url: `&typeNumber=1&rating.kp=6.5-10&genres.name=фантастика`,
+    slug: 'фантастика'
   },
   // {
   //   header: 'Аниме',
   //   url: `movie?page=1&limit=15&typeNumber=1&lists=top-100-movies`
   // },
 ]
+
+export const GENRES: SearchItem[] = [
+  { name: 'Все жанры', slug: '' },
+  { name: 'Семейные', slug: 'семейный' },
+  { name: 'Биографии', slug: 'биография' },
+  { name: 'Боевики', slug: 'боевик' },
+  { name: 'Вестерны', slug: 'вестерн' },
+  { name: 'Военные', slug: 'военный' },
+  { name: 'Детективы', slug: 'детектив' },
+  { name: 'Детские', slug: 'детский' },
+  { name: 'Документальные', slug: 'документальный' },
+  { name: 'Драмы', slug: 'драма' },
+  { name: 'Исторические', slug: 'история' },
+  { name: 'Комедии', slug: 'комедия' },
+  { name: 'Короткометражки', slug: 'короткометражка' },
+  { name: 'Криминал', slug: 'криминал' },
+  { name: 'Мелодрамы', slug: 'мелодрама' },
+  { name: 'Музыкальные', slug: 'музыка' },
+  { name: 'Мюзиклы', slug: 'мюзикл' },
+  { name: 'Новости', slug: 'новости' },
+  { name: 'Приключения', slug: 'приключения' },
+  { name: 'Спортивные', slug: 'спорт' },
+  { name: 'Триллеры', slug: 'триллер' },
+  { name: 'Ужасы', slug: 'ужасы' },
+  { name: 'Фантастика', slug: 'фантастика' },
+  { name: 'Фильмы-нуар', slug: 'фильм-нуар' },
+  { name: 'Фэнтези', slug: 'фэнтези' },
+];

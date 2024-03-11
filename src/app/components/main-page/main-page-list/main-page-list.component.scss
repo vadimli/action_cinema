@@ -13,6 +13,8 @@
   grid-auto-flow: row;
   gap: 2rem;
 
+  margin-top: 2rem;
+
   &__item {
     position: relative;
     transition: 1s;
@@ -25,11 +27,6 @@
   &__img {
     width: 100%;
   }
-
-  .badge {
-    bottom: 90%
-  }
-
 }
 
 .spinner {

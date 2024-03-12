@@ -24,7 +24,7 @@ export interface FilmListRequest {
   templateUrl: './main-page-list.component.html',
   styleUrl: './main-page-list.component.scss'
 })
-export class MainPageListComponent implements OnInit, OnDestroy{
+export class MainPageListComponent implements OnInit, OnDestroy {
 
   private destroy$: ReplaySubject<void> = new ReplaySubject<void>(1);
   public movies: IFilm[] = [];
@@ -92,7 +92,8 @@ export class MainPageListComponent implements OnInit, OnDestroy{
       .subscribe((value: IApiResponse) => {
         this.showSpinner = !!value.docs.length;
 
-        value.docs.forEach((item: IFilm) => {
+        const docs: IFilm[] =  value.docs as IFilm[]
+        docs.forEach((item: IFilm) => {
           this.movies.push(item);
         });
       });

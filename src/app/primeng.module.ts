@@ -7,6 +7,9 @@ import {SkeletonModule} from 'primeng/skeleton';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {DropdownModule} from 'primeng/dropdown';
 import {CheckboxModule} from 'primeng/checkbox';
+import {SidebarModule} from "primeng/sidebar";
+import {InputTextModule} from 'primeng/inputtext';
+
 
 
 @NgModule({
@@ -19,7 +22,9 @@ import {CheckboxModule} from 'primeng/checkbox';
     SkeletonModule,
     ProgressSpinnerModule,
     DropdownModule,
-    CheckboxModule
+    CheckboxModule,
+    SidebarModule,
+    InputTextModule
   ]
 })
 export class PrimengModule { }

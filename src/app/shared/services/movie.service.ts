@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {environment} from "../../../environments/environment.development";
 import {IApiResponse} from "../models/api-response";
 import {IFilm} from "../models/films/film";
 import {PersonFullInfo} from "../models/person/person-full-info";
-import {IImage} from "../models/image/image";
 import {IAwardRequest} from "../models/person/award";
-import {SearchItem} from "../models/films/small-interfaces";
+import {IShortFilmInfo} from "../models/films/short-film-info";
 
 export const REQUIRED_FIELDS: string = 'notNullFields=poster.url&selectFields=poster&selectFields=id&selectFields=name&selectFields=year&selectFields=rating'
 
@@ -18,6 +17,8 @@ export const REQUIRED_FIELDS: string = 'notNullFields=poster.url&selectFields=po
 export class MovieService {
 
   constructor(private _http: HttpClient) { }
+
+  public openModal: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   public getMovieByOptions(url: string, limit: number = 15, page: number = 1): Observable<IApiResponse> {
     return this._http.get<IApiResponse>(`${environment.apiUrl}movie?${REQUIRED_FIELDS}&page=${page}&limit=${limit}${url}`);
@@ -35,12 +36,13 @@ export class MovieService {
     return this._http.get<IAwardRequest>(`${environment.apiUrl}person/awards?page=1&limit=50&personId=${id}`);
   }
 
-  public getImageById(id: number): Observable<IImage[]> {
-    return this._http.get<IImage[]>(`${environment.apiUrl}image?page=1&limit=10&notNullFields=previewUrl&movieId=${id}&type=cover`);
+  public searchMoviesByName(query: string): Observable<IApiResponse> {
+    return this._http.get<IApiResponse>(`${environment.apiUrl}movie/search?page=1&limit=6&query=${query}`);
   }
 
-  public getGenres(): Observable<SearchItem[]> {
-    return this._http.get<SearchItem[]>(`https://api.kinopoisk.dev/v1/movie/possible-values-by-field?field=genres.name`);
+  public searchPersonByName(query: string): Observable<IApiResponse> {
+    return this._http.get<IApiResponse>(`${environment.apiUrl}person/search?page=1&limit=6&query=${query}`);
   }
+
 }
 

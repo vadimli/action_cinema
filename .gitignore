@@ -5,7 +5,7 @@
 /tmp
 /out-tsc
 /bazel-out
-/src/app/constants/
+/src/app/constants/keys.ts
 
 # Node
 /node_modules

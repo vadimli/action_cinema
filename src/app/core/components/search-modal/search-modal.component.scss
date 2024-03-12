@@ -1,0 +1,62 @@
+.search {
+  width: 50%;
+  margin: 0 auto;
+
+  &__input {
+    width: 100%;
+  }
+}
+
+.search-result {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  /* Два ряда */
+  grid-template-rows: auto auto;
+  /* Автоматическое размещение в ряд */
+  grid-auto-flow: row;
+  gap: 1.5rem;
+  justify-items: start;
+
+  margin: 2rem auto;
+
+  width: 50%;
+
+  &__item {
+    position: relative;
+    transition: 1s;
+    display: flex;
+    justify-content: center;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  &__name {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+  }
+
+  &__img {
+    width: 7rem;
+    height: 10rem;
+  }
+}
+
+.badge {
+  position: static;
+  margin-left: .5rem;
+}
+
+.spinner {
+  display: block;
+  text-align: center;
+}
+
+.person-header {
+  width: 50%;
+  margin: 2rem auto;
+}
+
+

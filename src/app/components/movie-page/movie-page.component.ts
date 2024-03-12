@@ -2,8 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MovieService} from "../../shared/services/movie.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {IFilm} from "../../shared/models/films/film";
-import {Observable, of, ReplaySubject, takeUntil} from "rxjs";
-import {example} from "../../constants/film-example";
+import {Observable, ReplaySubject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-movie-page',
@@ -20,7 +19,6 @@ export class MoviePageComponent implements OnInit, OnDestroy{
   }
 
   public ngOnInit(): void {
-    // this.movie$ = of(example)
     this.route.params.pipe(takeUntil(this.destroy$)).subscribe((value: Params) => {
       this.movie$ = this._movieService.getMovieById(value['id']);
     })

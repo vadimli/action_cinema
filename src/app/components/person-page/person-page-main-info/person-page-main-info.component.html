@@ -1,6 +1,6 @@
 <ng-container *ngIf="person">
   <div class="person">
-    <img class="person__img" [src]="person.photo" alt="Фото персоны"/>
+    <img class="person__img" [src]="person.photo || defaultPhoto" alt="Фото персоны"/>
     <div class="person__container">
       <div class="person__name">
         <h1>{{person.name}}</h1>

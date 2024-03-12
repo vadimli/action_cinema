@@ -1,17 +1,32 @@
 <h1>{{header}}</h1>
 
-<form [formGroup]="form">
-  <p-dropdown formControlName="genres" [options]="genres"  optionLabel="name" placeholder="Все жанры"></p-dropdown>
+<form [formGroup]="form" class="filter-form">
+  <p-dropdown formControlName="genres" [options]="genres"  optionLabel="name"  placeholder="Жанры"></p-dropdown>
+  <p-dropdown formControlName="rating" [options]="ratings"  optionLabel="name"  placeholder="Рейтинг"></p-dropdown>
+  <p-dropdown formControlName="years" [options]="years"  optionLabel="name"  placeholder="Годы выхода"></p-dropdown>
+  <div class="filter-form__checkbox">
+    <p-checkbox formControlName="topKp" [binary]="true" inputId="binary"></p-checkbox>
+    <label>Топ-250 Кинопоиска</label>
+  </div>
+
 </form>
 
 <ng-container *ngIf="movies.length >= limit">
   <div class="movie-list">
     <ng-container *ngFor="let movie of movies">
-      <a class="movie-list__item" routerLink="/movie/{{movie.id}}">
+      <a class="movie-list__item" routerLink="/film/{{movie.id}}">
         <img class="movie-list__img" [src]="movie.poster.url || movie.poster.previewUrl" alt="preview">
         <div class="badge badge-{{movie.rating.kp | checkColorRating}}">{{movie.rating.kp | number: '1.1-1'}}</div>
       </a>
     </ng-container>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="notFound && !showSpinner">
+  <div class="not-found">
+    <h3>Увы, нам ничего не удалось найти</h3>
+    <span>Попробуйте изменить фильтры или сбросьте их</span>
+    <button pButton type="button" label="Сбросить фильтры" (click)="formReset()"></button>
   </div>
 </ng-container>
 

@@ -2,17 +2,21 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MovieService} from "../../../shared/services/movie.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ReplaySubject, takeUntil} from "rxjs";
-import {GENRES} from "../main-page.config";
+import {GENRES, RATINGS} from "../main-page.config";
 import {IApiResponse} from "../../../shared/models/api-response";
 import {IFilm} from "../../../shared/models/films/film";
 import {FormControl, FormGroup} from "@angular/forms";
 import {SearchItem} from "../../../shared/models/films/small-interfaces";
 import {generateUrlForParams} from "../../../core/utils/generate-url-for-params";
 import {generateMovieListHeader} from "../../../core/utils/generate-movie-list-header";
+import {getCurrentYearList} from "../../../core/utils/get-current-year-list";
 
 export interface FilmListRequest {
   type: string,
-  genre: string
+  genre: string,
+  rating: string,
+  years: string,
+  topKp: boolean
 }
 
 @Component({
@@ -28,9 +32,12 @@ export class MainPageListComponent implements OnInit, OnDestroy{
   private page = 1;
   public showSpinner = true;
   public header: string;
+  public notFound = false;
 
   public form: FormGroup;
   public genres: SearchItem[] = GENRES;
+  public ratings: SearchItem[] = RATINGS;
+  public years: SearchItem[] = getCurrentYearList();
 
   public url = '';
 
@@ -49,7 +56,10 @@ export class MainPageListComponent implements OnInit, OnDestroy{
       .subscribe((value: Params) => {
         const request: FilmListRequest = {
           type: this._route.snapshot.url[0].path,
-          genre: value['type']
+          genre: value['type'],
+          rating: value['rating'],
+          years: value['years'],
+          topKp: value['topKp']
         }
 
         this.header = generateMovieListHeader(request)
@@ -57,21 +67,31 @@ export class MainPageListComponent implements OnInit, OnDestroy{
 
         this.movies = [];
 
-        this.getMovies(24, 1)
+        this.getMovies(24, 1);
+
+        this.notFound = !this.movies.length;
       });
 
-    this.form.valueChanges.subscribe(value => {
-      this._router.navigate([], { queryParams: { type: value.genres.slug }});
-    })
+    this.form.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(value => {
+        const queryParams: Params = {
+          type: value.genres?.slug,
+          rating: value.rating?.slug,
+          years: value.years?.slug,
+          topKp: value.topKp
+        }
+
+        this._router.navigate([], {queryParams});
+      })
   }
 
   private getMovies(limit: number, page: number): void {
     this._movieService.getMovieByOptions(this.url, limit ,page)
       .pipe(takeUntil(this.destroy$))
       .subscribe((value: IApiResponse) => {
-        if (!value.docs.length) {
-          this.showSpinner = false
-        }
+        this.showSpinner = !!value.docs.length;
+
         value.docs.forEach((item: IFilm) => {
           this.movies.push(item);
         });
@@ -80,7 +100,10 @@ export class MainPageListComponent implements OnInit, OnDestroy{
 
   private initForm(): void {
     this.form = new FormGroup({
-      genres: new FormControl(null)
+      genres: new FormControl(),
+      rating: new FormControl(),
+      years: new FormControl(),
+      topKp: new FormControl(false)
     })
   }
 
@@ -100,4 +123,9 @@ export class MainPageListComponent implements OnInit, OnDestroy{
     this.destroy$.next();
     this.destroy$.complete();
   }
+
+  public formReset(): void {
+    this.form.reset();
+  }
+
 }

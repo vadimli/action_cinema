@@ -10,7 +10,7 @@ let routes: Routes = [
   {path: 'movie', component: MainPageListComponent},
   {path: 'tv-series', component: MainPageListComponent},
   {path: 'cartoon', component: MainPageListComponent},
-  {path: 'movie/:id', component: MoviePageComponent},
+  {path: 'film/:id', component: MoviePageComponent},
   {path: 'person/:id', component: PersonPageComponent},
 ];
 

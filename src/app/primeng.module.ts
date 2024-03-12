@@ -6,7 +6,7 @@ import {TabViewModule} from 'primeng/tabview';
 import {SkeletonModule} from 'primeng/skeleton';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {DropdownModule} from 'primeng/dropdown';
-
+import {CheckboxModule} from 'primeng/checkbox';
 
 
 @NgModule({
@@ -18,7 +18,8 @@ import {DropdownModule} from 'primeng/dropdown';
     TabViewModule,
     SkeletonModule,
     ProgressSpinnerModule,
-    DropdownModule
+    DropdownModule,
+    CheckboxModule
   ]
 })
 export class PrimengModule { }

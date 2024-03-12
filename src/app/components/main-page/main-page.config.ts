@@ -61,8 +61,9 @@ export const MAIN_PAGE_CONFIG: CarouselConfigItem[] = [
   // },
 ]
 
+/*Список жанров*/
 export const GENRES: SearchItem[] = [
-  { name: 'Все жанры', slug: '' },
+  { name: 'Жанры', slug: '' },
   { name: 'Семейные', slug: 'семейный' },
   { name: 'Биографии', slug: 'биография' },
   { name: 'Боевики', slug: 'боевик' },
@@ -88,3 +89,14 @@ export const GENRES: SearchItem[] = [
   { name: 'Фильмы-нуар', slug: 'фильм-нуар' },
   { name: 'Фэнтези', slug: 'фэнтези' },
 ];
+
+/*Рейтинги*/
+export const RATINGS: SearchItem[] = [
+  { name: 'Рейтинг', slug: '' },
+  { name: 'от 8', slug: '8-10' },
+  { name: 'от 7', slug: '7-10' },
+  { name: 'от 6', slug: '6-10' }
+];
+
+
+

@@ -29,6 +29,36 @@
   }
 }
 
+.filter-form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  &__checkbox {
+    label {
+      margin-left: .5rem;
+      color: rgba(255, 255, 255, 0.87);
+    }
+  }
+}
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 10% auto;
+  align-items: center;
+
+  button {
+    margin-top: 1rem;
+    width: 13rem;
+  }
+
+  span {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
 .spinner {
   text-align: center;
 }

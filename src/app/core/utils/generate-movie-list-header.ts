@@ -4,7 +4,7 @@ import {FilmListRequest} from "../../components/main-page/main-page-list/main-pa
 
 export function  generateMovieListHeader(request: FilmListRequest): string {
   let typeList: string;
-  const selectedGenre: SearchItem = GENRES.find(item => item.slug === request.genre)
+  const selectedGenre: SearchItem = GENRES.find(item => !!request.genre && item.slug === request.genre)
   const genre: string = !!selectedGenre ? `: ${selectedGenre.name}` : '';
   switch(request.type) {
     case 'tv-series':

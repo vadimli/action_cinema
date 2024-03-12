@@ -7,7 +7,7 @@
           <div class="detailed__films-container">
             <h2>{{item.title}}</h2>
             <ng-container *ngFor="let film of item.films">
-              <a routerLink="/movie/{{film.id}}" class="detailed__films-link grey">{{film.name}}</a>
+              <a routerLink="/film/{{film.id}}" class="detailed__films-link grey">{{film.name}}</a>
             </ng-container>
           </div>
         </ng-container>
@@ -25,7 +25,7 @@
                 {{item.nomination.title}}
                 <span>({{item.winning ? 'Победа' : 'Номинация'}})</span>
               </span>
-              <a routerLink="/movie/{{item.movie.id}}" class="detailed__films-link grey">{{item.movie.name}}</a>
+              <a routerLink="/film/{{item.movie.id}}" class="detailed__films-link grey">{{item.movie.name}}</a>
             </div>
           </ng-container>
         </div>

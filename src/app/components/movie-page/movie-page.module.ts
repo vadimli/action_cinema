@@ -6,6 +6,7 @@ import {CoreModule} from "../../core/core.module";
 import {MaterialModule} from "../../material.module";
 import { MoviePageDetailedComponent } from './movie-page-detailed/movie-page-detailed.component';
 import {PrimengModule} from "../../primeng.module";
+import {YouTubePlayer} from "@angular/youtube-player";
 
 
 
@@ -20,7 +21,8 @@ import {PrimengModule} from "../../primeng.module";
     CoreModule,
     NgOptimizedImage,
     MaterialModule,
-    PrimengModule
+    PrimengModule,
+    YouTubePlayer
   ]
 })
 export class MoviePageModule { }

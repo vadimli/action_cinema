@@ -9,6 +9,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {CheckboxModule} from 'primeng/checkbox';
 import {SidebarModule} from "primeng/sidebar";
 import {InputTextModule} from 'primeng/inputtext';
+import {DialogModule} from 'primeng/dialog';
 
 
 
@@ -24,7 +25,8 @@ import {InputTextModule} from 'primeng/inputtext';
     DropdownModule,
     CheckboxModule,
     SidebarModule,
-    InputTextModule
+    InputTextModule,
+    DialogModule
   ]
 })
 export class PrimengModule { }

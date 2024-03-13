@@ -35,7 +35,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     GetValueInObjectPipe,
     FilmsCarouselComponent,
     EnterTheViewportNotifierDirective,
-    SearchModalComponent
+    SearchModalComponent,
   ],
   imports: [
     CommonModule,

@@ -9,7 +9,7 @@
   <a routerLink="/cartoon" routerLinkActive="header__nav-item_active" class="header__nav-item">Мультфильмы</a>
 </nav>
 
-<p-sidebar [(visible)]="showSearchModal" [fullScreen]="showSearchModal" [baseZIndex]="10000">
+<p-sidebar class="sidebar" [(visible)]="showSearchModal" [fullScreen]="true" [baseZIndex]="10000">
   <app-search-modal></app-search-modal>
 </p-sidebar>
 

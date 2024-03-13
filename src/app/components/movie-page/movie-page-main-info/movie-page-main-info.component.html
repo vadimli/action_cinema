@@ -20,11 +20,20 @@
   </div>
   <p *ngIf="!!movie?.shortDescription" class="main-info__descr">{{movie.shortDescription}}</p>
   <div class="main-info__btn">
-    <button pButton type="button" label="Смотреть" icon="pi pi-play"></button>
-    <button pButton type="button" label="Трейлер" class="p-button-secondary"></button>
+    <button pButton type="button" label="Смотреть" icon="pi pi-play" (click)="showMovieClick()"></button>
+    <button *ngIf="!!trailerId" pButton type="button" label="Трейлер" class="p-button-secondary" (click)="showTrailer = true"></button>
     <button pButton pRipple type="button" icon="pi pi-bookmark" class="p-button-rounded p-button-secondary"></button>
   </div>
 </div>
 <div class="main-picture">
   <img class="main-picture__img" [src]="movie?.backdrop?.url || movie?.backdrop?.previewUrl || '../../../../assets/img/cinema.jpg'" loading="lazy" alt="main movie picture">
 </div>
+<p-sidebar class="sidebar" [(visible)]="showMovie" [fullScreen]="true" [baseZIndex]="10000">
+  <div class="kinobox_player" [style]="{height: '90%'}"></div>
+</p-sidebar>
+
+
+
+<p-dialog [header]="createModalHeader" [(visible)]="showTrailer" [modal]="true" [style]="{width: '50vw'}">
+  <youtube-player class="youtube-player" [videoId]="trailerId" placeholderImageQuality="standard"/>
+</p-dialog>

@@ -13,6 +13,13 @@
     display: flex;
     align-items: center;
 
+    span {
+      font-family: "Bangers", system-ui;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 3rem;
+    }
+
     svg {
       width: 2rem;
     }

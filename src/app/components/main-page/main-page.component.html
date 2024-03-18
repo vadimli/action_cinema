@@ -1,3 +1,5 @@
-<ng-container *ngFor="let item of mainPageConfig">
+<app-films-carousel [selectionFilms]="mainCarouselValue" [amountItem]="4"></app-films-carousel>
+
+<ng-container *ngFor="let item of otherCarouselValue">
   <app-films-carousel [selectionFilms]="item"></app-films-carousel>
 </ng-container>

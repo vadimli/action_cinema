@@ -33,6 +33,7 @@ export class MainPageListComponent implements OnInit, OnDestroy {
   public showSpinner = true;
   public header: string;
   public notFound = false;
+  public showMovie = false;
 
   public form: FormGroup;
   public genres: SearchItem[] = GENRES;
@@ -49,7 +50,7 @@ export class MainPageListComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.initForm();
-    this.form.get('genres').setValue(GENRES.find((item: SearchItem) => item.slug === this._route.snapshot.queryParams['type']));
+    this.setFormValues();
 
     this._route.queryParams
       .pipe(takeUntil(this.destroy$))
@@ -106,6 +107,12 @@ export class MainPageListComponent implements OnInit, OnDestroy {
       years: new FormControl(),
       topKp: new FormControl(false)
     })
+  }
+
+  private setFormValues(): void {
+    this.form.get('genres').setValue(GENRES.find((item: SearchItem) => item.slug === this._route.snapshot.queryParams['genre']));
+    this.form.get('topKp').setValue(!!this._route.snapshot.queryParams['topKp']);
+    this.form.get('years').setValue(this.years.find((item: SearchItem) => item.slug === this._route.snapshot.queryParams['years']));
   }
 
   // Метод, который будет подгружать новые данные.

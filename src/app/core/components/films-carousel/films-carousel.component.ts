@@ -15,6 +15,7 @@ import {CarouselConfigItem} from "../../../components/main-page/main-page.config
 export class FilmsCarouselComponent implements OnInit, OnDestroy {
 
   @Input() public selectionFilms: CarouselConfigItem;
+  @Input() public amountItem: number = 8;
 
   public movies: IFilm[] | IShortFilmInfo[];
   private destroy$: ReplaySubject<void> = new ReplaySubject<void>(1);

@@ -3,10 +3,13 @@ import dayjs from "dayjs";
 import {SearchItem} from "../../shared/models/films/small-interfaces";
 
 export interface CarouselConfigItem {
-  header: string;
+  header?: string;
   url: string;
-  slug: string;
+  genre?: string;
   name?: string;
+  main?: boolean;
+  topKp?: boolean;
+  years?: string;
 }
 
 export function getLatestPeriod(): string {
@@ -17,48 +20,40 @@ export function getLatestPeriod(): string {
 }
 
 export const MAIN_PAGE_CONFIG: CarouselConfigItem[] = [
-  // {
-  //   header: 'Новинки',
-  //   url: '&rating.kp=6-10&typeNumber=1' + getLatestPeriod(),
-  //   slug: 'new'
-  // },
-  // {
-  //   header: 'ТОП-250 Кинопоиска',
-  //   url: `&typeNumber=1&lists=top250`,
-  //   slug: 'top250',
-  // },
+  {
+    url: '&rating.kp=7-10' + getLatestPeriod(),
+    main: true
+  },
+  {
+    header: 'Новинки',
+    url: `&typeNumber=1&year=${dayjs().year() - 1}-${dayjs().year()}`,
+    years: `${dayjs().year() - 1}-${dayjs().year()}`,
+  },
+  {
+    header: 'ТОП-250 Кинопоиска',
+    url: `&typeNumber=1&lists=top250`,
+    topKp: true,
+  },
   {
     header: 'Драма',
     url: `&typeNumber=1&rating.kp=6.5-10&genres.name=драма`,
-    slug: 'драма',
+    genre: 'драма',
   },
   {
     header: 'Комедия',
     url: `&typeNumber=1&rating.kp=6.5-10&genres.name=комедия`,
-    slug: 'комедия'
+    genre: 'комедия'
   },
-  // {
-  //   header: 'Сериалы',
-  //   url: `movie?page=1&limit=15&typeNumber=1&lists=top-100-movies`
-  // },
   {
     header: 'Боевик',
     url: `&typeNumber=1&rating.kp=6.5-10&genres.name=боевик`,
-    slug: 'боевик'
+    genre: 'боевик'
   },
-  // {
-  //   header: 'Мультфильмы',
-  //   url: `movie?page=1&limit=15&typeNumber=1&lists=top-100-movies`
-  // },
   {
     header: 'Фантастика',
     url: `&typeNumber=1&rating.kp=6.5-10&genres.name=фантастика`,
-    slug: 'фантастика'
-  },
-  // {
-  //   header: 'Аниме',
-  //   url: `movie?page=1&limit=15&typeNumber=1&lists=top-100-movies`
-  // },
+    genre: 'фантастика'
+  }
 ]
 
 /*Список жанров*/

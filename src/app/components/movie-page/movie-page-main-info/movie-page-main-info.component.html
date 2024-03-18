@@ -7,11 +7,11 @@
   <div class="main-info__meta">
     <div *ngIf="!!movie?.rating?.kp" class="main-info__meta-rating">
       <img src="../../../../assets/svg/kinopoisk-icon-colored-on-blackbackground.svg" alt="kp">
-      <span class="main-info__meta-rating_{{movie.rating.kp | checkColorRating}}">{{movie.rating.kp | number: '1.0-1'}}</span>
+      <span class="main-info__meta-rating_{{movie.rating.kp | checkColorRating}}">{{movie.rating.kp | number: '1.1-1'}}</span>
     </div>
     <div *ngIf="!!movie?.rating?.imdb" class="main-info__meta-rating">
       <img src="../../../../assets/svg/imdb-svgrepo-com.svg" alt="imdb">
-      <span class="main-info__meta-rating_{{movie.rating.imdb | checkColorRating}}">{{movie.rating.imdb | number: '1.0-1'}}</span>
+      <span class="main-info__meta-rating_{{movie.rating.imdb | checkColorRating}}">{{movie.rating.imdb | number: '1.1-1'}}</span>
     </div>
     <span>{{movie?.genres | getNameInObject: 2}}</span>
     <span *ngIf="!!movie?.movieLength && !movie?.isSeries">{{movie.movieLength}} мин</span>

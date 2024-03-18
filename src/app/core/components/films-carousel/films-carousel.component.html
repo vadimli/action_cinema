@@ -1,7 +1,7 @@
 <ng-container *ngIf="movies; else skeleton">
-  <p-carousel [value]="movies" [numVisible]="8" [numScroll]="1" [showIndicators]="false">
+  <p-carousel [value]="movies" [numVisible]="amountItem" [numScroll]="1" [showIndicators]="false">
     <ng-template pTemplate="header">
-      <a routerLink="movie" [queryParams]="{type: selectionFilms.slug}" class="header">
+      <a routerLink="movie" [queryParams]="{genre: selectionFilms.genre, topKp: selectionFilms.topKp, years: selectionFilms.years}" class="header">
         <h1>{{selectionFilms.header}}</h1>
       </a>
     </ng-template>

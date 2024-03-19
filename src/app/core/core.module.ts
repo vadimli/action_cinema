@@ -13,6 +13,7 @@ import { EnterTheViewportNotifierDirective } from './directive/enter-the-viewpor
 import { SearchModalComponent } from './components/search-modal/search-modal.component';
 import {PrimengModule} from "../primeng.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import {LayoutModule} from "@angular/cdk/layout";
 
 
 
@@ -43,7 +44,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     SharedModule,
     RouterLink,
     PrimengModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LayoutModule
   ]
 })
 export class CoreModule { }

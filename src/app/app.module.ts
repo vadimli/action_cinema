@@ -15,6 +15,7 @@ import {CoreModule} from "./core/core.module";
 import {PrimengModule} from "./primeng.module";
 import {FooterComponent} from "./components/footer/footer.component";
 import {PersonPageModule} from "./components/person-page/person-page.module";
+import {LayoutModule} from "@angular/cdk/layout";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {PersonPageModule} from "./components/person-page/person-page.module";
     CoreModule,
     PrimengModule,
     PersonPageModule,
-    RouterLinkActive
+    RouterLinkActive,
+    LayoutModule
   ],
   providers: [
     {

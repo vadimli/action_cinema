@@ -1,3 +1,5 @@
+@import "../../../style/mixins/_breakpoints.scss";
+
 :host {
   display: flex;
   justify-content: space-between;
@@ -44,10 +46,15 @@
         color: white;
         padding-bottom: 1rem;
         border-bottom: 1px solid #2dd4bf;
+        @include media-breakpoint-down(sm) {
+          color: red;
+        }
       }
     }
   }
 }
+
+
 
 .search-icon {
   cursor: pointer;

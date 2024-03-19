@@ -8,6 +8,7 @@ import {PersonPageDetailedComponent} from "./person-page-detailed/person-page-de
 import {DividerModule} from "primeng/divider";
 import {TabViewModule} from "primeng/tabview";
 import {RouterLink} from "@angular/router";
+import {LayoutModule} from "@angular/cdk/layout";
 
 
 
@@ -24,7 +25,8 @@ import {RouterLink} from "@angular/router";
     CoreModule,
     DividerModule,
     TabViewModule,
-    RouterLink
+    RouterLink,
+    LayoutModule
   ]
 })
 export class PersonPageModule { }

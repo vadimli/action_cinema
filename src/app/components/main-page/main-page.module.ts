@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import {MainPageComponent} from "./main-page.component";
-import {RouterLink} from "@angular/router";
+import {RouterLink, RouterLinkActive} from "@angular/router";
 import {PrimengModule} from "../../primeng.module";
 import {CoreModule} from "../../core/core.module";
 import { MainPageListComponent } from './main-page-list/main-page-list.component';
@@ -20,7 +20,8 @@ import {LayoutModule} from "@angular/cdk/layout";
     PrimengModule,
     CoreModule,
     ReactiveFormsModule,
-    LayoutModule
+    LayoutModule,
+    RouterLinkActive
   ],
   exports: [
     MainPageComponent,

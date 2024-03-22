@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MovieService} from "../../shared/services/movie.service";
 import {ReplaySubject, takeUntil} from "rxjs";
+import {PlatformService} from "../../shared/services/platform.service";
 
 @Component({
   selector: 'app-header',
@@ -11,10 +12,14 @@ import {ReplaySubject, takeUntil} from "rxjs";
 export class HeaderComponent implements OnInit, OnDestroy {
 
   private destroy$: ReplaySubject<void> = new ReplaySubject<void>(1);
-
   public showSearchModal = false;
+  public showNavModal = false;
 
-  constructor(private _movieService: MovieService){}
+  public get isDesktop(): boolean {
+    return  this._platform.isDesktop();
+  }
+
+  constructor(private _movieService: MovieService, private _platform: PlatformService){}
 
   public ngOnInit(): void {
     this._movieService.openModal

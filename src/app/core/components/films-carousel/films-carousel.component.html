@@ -1,5 +1,5 @@
 <ng-container *ngIf="movies; else skeleton">
-  <p-carousel [value]="movies" [numVisible]="amountItem" [numScroll]="1" [showIndicators]="false">
+  <p-carousel [value]="movies" [responsiveOptions]="getResponsiveOptions" [numVisible]="amountItem" [numScroll]="1" [showIndicators]="false" [showNavigators]="isDesktop">
     <ng-template pTemplate="header">
       <a routerLink="movie" [queryParams]="{genre: selectionFilms.genre, topKp: selectionFilms.topKp, years: selectionFilms.years}" class="header">
         <h1>{{selectionFilms.header}}</h1>

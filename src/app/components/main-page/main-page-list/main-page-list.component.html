@@ -1,6 +1,15 @@
-<h1>{{header}}</h1>
+<ng-container *ngIf="isLargeMobile else desktopHeader">
+  <div class="movie-list__header">
+    <h2>{{header}}</h2>
+    <i class="pi pi-sliders-h grey icon" (click)="showFiltersModal = true"></i>
+  </div>
+</ng-container>
 
-<form [formGroup]="form" class="filter-form">
+<ng-template #desktopHeader>
+  <h1>{{header}}</h1>
+</ng-template>
+
+<form *ngIf="!isLargeMobile" [formGroup]="form" class="filter-form">
   <p-dropdown formControlName="genres" [options]="genres"  optionLabel="name"  placeholder="Жанры"></p-dropdown>
   <p-dropdown formControlName="rating" [options]="ratings"  optionLabel="name"  placeholder="Рейтинг"></p-dropdown>
   <p-dropdown formControlName="years" [options]="years"  optionLabel="name"  placeholder="Годы выхода"></p-dropdown>
@@ -8,7 +17,6 @@
     <p-checkbox formControlName="topKp" [binary]="true" inputId="binary"></p-checkbox>
     <label>Топ-250</label>
   </div>
-
 </form>
 
 <ng-container *ngIf="movies.length >= limit">
@@ -29,6 +37,19 @@
     <button pButton type="button" label="Сбросить фильтры" (click)="formReset()"></button>
   </div>
 </ng-container>
+
+<p-sidebar class="sidebar" [(visible)]="showFiltersModal" [fullScreen]="true" [baseZIndex]="10000">
+  <form *ngIf="isLargeMobile" [formGroup]="form" class="filter-form" (ngSubmit)="submit()" #ngForm="ngForm">
+    <p-dropdown formControlName="genres" [options]="genres"  optionLabel="name"  placeholder="Жанры" class="filter-form__dropdown"></p-dropdown>
+    <p-dropdown formControlName="rating" [options]="ratings"  optionLabel="name"  placeholder="Рейтинг"></p-dropdown>
+    <p-dropdown formControlName="years" [options]="years"  optionLabel="name"  placeholder="Годы выхода"></p-dropdown>
+    <div class="filter-form__checkbox">
+      <p-checkbox formControlName="topKp" [binary]="true" inputId="binary"></p-checkbox>
+      <label>Топ-250</label>
+    </div>
+    <p-button class="filter-form__btn" label="Показать результаты" (click)="ngForm.onSubmit($event)"></p-button>
+  </form>
+</p-sidebar>
 
 
 <!--Провоцируем вызов события onScroll-->

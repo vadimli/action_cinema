@@ -1,3 +1,5 @@
+@import "../../../../style/mixins/_breakpoints.scss";
+
 :host {
   display: block;
   padding: 0 6rem;
@@ -20,5 +22,24 @@
     &-title {
       color: rgba(255,255,255,.56);
     }
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  :host {
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .detailed-tabs {
+    max-width: 100%;
+    padding-top: 0.75rem;
+
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  :host {
+    padding: 0 1rem;
   }
 }

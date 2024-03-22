@@ -1,8 +1,17 @@
 <ng-container *ngIf="person">
   <div class="person">
-    <img class="person__img" [src]="person.photo || defaultPhoto" alt="Фото персоны"/>
+
+    <div *ngIf="isMobile" class="person__main">
+      <img class="person__img" [src]="person.photo || defaultPhoto" alt="Фото персоны"/>
+        <div class="person__name">
+          <h3>{{person.name}}</h3>
+          <span *ngIf="person.enName" class="grey">{{person.enName}}</span>
+        </div>
+    </div>
+
+    <img *ngIf="!isMobile" class="person__img" [src]="person.photo || defaultPhoto" alt="Фото персоны"/>
     <div class="person__container">
-      <div class="person__name">
+      <div *ngIf="!isMobile" class="person__name">
         <h1>{{person.name}}</h1>
         <span *ngIf="person.enName" class="grey">{{person.enName}}</span>
       </div>

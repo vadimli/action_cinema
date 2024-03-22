@@ -1,4 +1,11 @@
+@import "../../../style/mixins/_breakpoints.scss";
+
 :host {
   display: block;
-  padding: 1rem 6rem;
+  padding: 1rem 4rem;
+}
+@include media-breakpoint-down(lg) {
+  :host {
+    padding: 0 0 1rem 1rem;
+  }
 }

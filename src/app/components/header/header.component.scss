@@ -8,11 +8,10 @@
 }
 
 .header {
-  &__logo{
+  &__logo {
     font-size: 2.5rem;
     text-decoration: none;
     color: #2dd4bf;
-    display: flex;
     align-items: center;
 
     span {
@@ -31,6 +30,11 @@
     }
   }
 
+  &__icons {
+    display: flex;
+    gap: 1.25rem;
+  }
+
 
   &__nav {
     font-weight: 700;
@@ -46,17 +50,55 @@
         color: white;
         padding-bottom: 1rem;
         border-bottom: 1px solid #2dd4bf;
-        @include media-breakpoint-down(sm) {
-          color: red;
-        }
       }
     }
   }
 }
 
+@include media-breakpoint-down(lg) {
+  :host {
+    padding: 1rem 2rem;
+  }
+
+  .header {
+    &__nav {
+      display: flex;
+      flex-direction: column;
+      &-item {
+        font-size: 1.5rem;
+        margin-right: 0;
+        padding-left: .5rem;
+        margin-bottom: 1.5rem;
+
+        &_active {
+          color: white;
+          padding-bottom: 0;
+          border-left: 2px solid #2dd4bf;
+          border-bottom: none;
+        }
+      }
+    }
+    &__logo {
+      span {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  .icon {
+    color: rgba(255, 255, 255, 0.96);
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  :host {
+    padding: 1rem;
+  }
+}
 
 
-.search-icon {
+.icon {
+  font-size: 1.5rem;
   cursor: pointer;
 }
 .sidebar {

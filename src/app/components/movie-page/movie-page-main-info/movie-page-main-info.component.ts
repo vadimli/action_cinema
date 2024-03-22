@@ -2,6 +2,7 @@ import {Component, Inject, Input, OnInit, Renderer2} from '@angular/core';
 import {IFilm} from "../../../shared/models/films/film";
 import {IVideoUrl} from "../../../shared/models/films/video";
 import {DOCUMENT} from "@angular/common";
+import {PlatformService} from "../../../shared/services/platform.service";
 
 
 @Component({
@@ -22,9 +23,14 @@ export class MoviePageMainInfoComponent implements OnInit {
     return `${this.movie.name}, ${this.movie.year}`;
   }
 
+  public get isLargeMobile(): boolean {
+    return  this._platform.isLargeMobile();
+  }
+
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private renderer2: Renderer2
+    private renderer2: Renderer2,
+    private _platform: PlatformService
   ) {}
 
   public ngOnInit(): void {

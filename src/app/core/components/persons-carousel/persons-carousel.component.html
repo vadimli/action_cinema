@@ -1,6 +1,6 @@
-<p-carousel [value]="persons" [numVisible]="10" [numScroll]="1" [showIndicators]="false">
+<p-carousel [value]="persons" [numVisible]="10" [numScroll]="1" [showIndicators]="false" [responsiveOptions]="responsiveOptions" [showNavigators]="isDesktop">
   <ng-template pTemplate="header">
-    <h1>Актёры и съёмочная группа</h1>
+    <h1 class="carousel__header">Актёры и съёмочная группа</h1>
   </ng-template>
   <ng-template let-person pTemplate="item">
     <a routerLink="/person/{{person.id}}" class="carousel">

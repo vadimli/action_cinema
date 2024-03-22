@@ -1,3 +1,5 @@
+@import "../../../../style/mixins/_breakpoints.scss";
+
 .person {
   display: flex;
   padding: 2rem 6rem;
@@ -6,6 +8,10 @@
   &__img {
     border-radius: 1.5rem;
     width: 20%;
+
+    @include media-breakpoint-down(xl) {
+      width: 40%;
+    }
   }
 
   &__container {
@@ -33,4 +39,29 @@
       }
     }
   }
+}
+
+@include media-breakpoint-down(lg) {
+  .person {
+    padding: 2rem 2rem 0 2rem;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .person {
+    padding: 1rem 1rem 0 1rem;
+    flex-direction: column;
+    &__main {
+      display: flex;
+    }
+
+    &__img {
+      margin-right: 1rem;
+    }
+
+    &__container {
+      margin-left: 0;
+    }
+  }
+
 }

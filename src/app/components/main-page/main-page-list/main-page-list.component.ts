@@ -10,6 +10,7 @@ import {SearchItem} from "../../../shared/models/films/small-interfaces";
 import {generateUrlForParams} from "../../../core/utils/generate-url-for-params";
 import {generateMovieListHeader} from "../../../core/utils/generate-movie-list-header";
 import {getCurrentYearList} from "../../../core/utils/get-current-year-list";
+import {PlatformService} from "../../../shared/services/platform.service";
 
 export interface FilmListRequest {
   type: string,
@@ -17,6 +18,13 @@ export interface FilmListRequest {
   rating: string,
   years: string,
   topKp: boolean
+}
+
+export interface FilmFilters {
+  genres: SearchItem;
+  rating: SearchItem;
+  years: SearchItem;
+  topKp: boolean;
 }
 
 @Component({
@@ -34,6 +42,7 @@ export class MainPageListComponent implements OnInit, OnDestroy {
   public header: string;
   public notFound = false;
   public showMovie = false;
+  public showFiltersModal = false
 
   public form: FormGroup;
   public genres: SearchItem[] = GENRES;
@@ -42,9 +51,14 @@ export class MainPageListComponent implements OnInit, OnDestroy {
 
   public url = '';
 
+  public get isLargeMobile(): boolean {
+    return  this._platform.isLargeMobile();
+  }
+
   constructor(private _movieService: MovieService,
               private _route: ActivatedRoute,
-              private _router: Router) {
+              private _router: Router,
+              private _platform: PlatformService) {
   }
 
 
@@ -73,18 +87,20 @@ export class MainPageListComponent implements OnInit, OnDestroy {
         this.notFound = !this.movies.length;
       });
 
-    this.form.valueChanges
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(value => {
-        const queryParams: Params = {
-          type: value.genres?.slug,
-          rating: value.rating?.slug,
-          years: value.years?.slug,
-          topKp: value.topKp
-        }
+    if (!this.isLargeMobile) {
+      this.form.valueChanges
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((value: FilmFilters) => {
+          const queryParams: Params = {
+            type: value.genres?.slug,
+            rating: value.rating?.slug,
+            years: value.years?.slug,
+            topKp: value.topKp
+          }
 
-        this._router.navigate([], {queryParams});
-      })
+          this._router.navigate([], {queryParams});
+        })
+    }
   }
 
   private getMovies(limit: number, page: number): void {
@@ -134,6 +150,20 @@ export class MainPageListComponent implements OnInit, OnDestroy {
 
   public formReset(): void {
     this.form.reset();
+  }
+
+  public submit(): void {
+    const formValue: FilmFilters = this.form.value;
+    const queryParams: Params = {
+      type: formValue.genres?.slug,
+      rating: formValue.rating?.slug,
+      years: formValue.years?.slug,
+      topKp: formValue.topKp
+    }
+
+    this._router.navigate([], {queryParams});
+
+    this.showFiltersModal = false;
   }
 
 }

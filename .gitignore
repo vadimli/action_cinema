@@ -6,6 +6,7 @@
 /out-tsc
 /bazel-out
 /src/app/constants/keys.ts
+/src/app/shared/classes/token.interceptor.ts
 
 # Node
 /node_modules

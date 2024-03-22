@@ -7,7 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HeaderComponent} from "./components/header/header.component";
 import {NgClass} from "@angular/common";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-// import {TokenInterceptors} from "./shared/classes/token.interceptor";
+import {TokenInterceptors} from "./shared/classes/token.interceptor";
 import {MainPageModule} from "./components/main-page/main-page.module";
 import {MoviePageModule} from "./components/movie-page/movie-page.module";
 import {RouterLinkActive, RouterModule} from "@angular/router";
@@ -39,11 +39,11 @@ import {LayoutModule} from "@angular/cdk/layout";
     LayoutModule
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   multi: true,
-    //   useClass: TokenInterceptors
-    // }
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: TokenInterceptors
+    }
   ],
   bootstrap: [AppComponent]
 })

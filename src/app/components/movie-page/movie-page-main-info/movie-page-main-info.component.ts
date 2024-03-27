@@ -34,13 +34,13 @@ export class MoviePageMainInfoComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.trailerId = this.getTrailerId(this.movie.videos.trailers);
+    this.trailerId = this.getTrailerId(this.movie?.videos?.trailers);
   }
 
 
 
   private getTrailerId(trailers: IVideoUrl[]): string {
-    if (!trailers) {
+    if (!trailers?.length) {
       return null;
     }
 
@@ -53,7 +53,7 @@ export class MoviePageMainInfoComponent implements OnInit {
     this.loadScript('https://kinobox.tv/kinobox.min.js').then(
       () => this.loadTextScript(`
           setTimeout(() => {
-        new Kinobox('.kinobox_player', {search: {kinopoisk: ${this.movie?.id.toString()}}}).init();
+            kbox('.kinobox_player', {search: {kinopoisk: ${this.movie?.id.toString()}}});
           }, 0);
       `).then(() => this.showMovie = true));
   }

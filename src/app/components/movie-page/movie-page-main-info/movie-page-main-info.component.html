@@ -31,7 +31,7 @@
 </div>
 
 <p-sidebar class="sidebar" [(visible)]="showMovie" [fullScreen]="true" [baseZIndex]="10000">
-  <div class="kinobox_player" [style]="{height: '90%'}"></div>
+  <div data-kinobox="auto" data-kinopoisk="{{movie?.id.toString()}}"></div>
 </p-sidebar>
 
 

@@ -50,21 +50,7 @@ export class MoviePageMainInfoComponent implements OnInit {
   }
 
   public showMovieClick(): void {
-    this.loadScript('https://kinobox.tv/kinobox.min.js').then(
-      () => this.loadTextScript(`
-          setTimeout(() => {
-            kbox('.kinobox_player', {search: {kinopoisk: ${this.movie?.id.toString()}}});
-          }, 0);
-      `).then(() => this.showMovie = true));
-  }
-
-  private loadTextScript(text: string) {
-    return new Promise(resolve => {
-      const script = this.renderer2.createElement('script');
-      script.text = text;
-      this.renderer2.appendChild(this.document.body, script);
-      resolve(text);
-    });
+    this.loadScript('https://kinobox.tv/kinobox.min.js').then(() => this.showMovie = true);
   }
 
   private loadScript(url: string) {

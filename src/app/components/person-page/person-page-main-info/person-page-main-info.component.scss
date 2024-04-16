@@ -7,10 +7,10 @@
 
   &__img {
     border-radius: 1.5rem;
-    width: 20%;
+    width: 40%;
 
-    @include media-breakpoint-down(xl) {
-      width: 40%;
+    @include media-breakpoint-up(xl) {
+      width: 40vh;
     }
   }
 

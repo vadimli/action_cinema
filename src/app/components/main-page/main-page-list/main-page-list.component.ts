@@ -111,7 +111,11 @@ export class MainPageListComponent implements OnInit, OnDestroy {
 
         const docs: IFilm[] =  value.docs as IFilm[]
         docs.forEach((item: IFilm) => {
-          this.movies.push(item);
+          const duplicate: boolean  = this.movies.some((film: IFilm) => film.id === item.id);
+
+          if (!duplicate) {
+            this.movies.push(item);
+          }
         });
       });
   }

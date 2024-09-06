@@ -74,6 +74,7 @@ export class FilmsCarouselComponent implements OnInit, OnDestroy {
 
   constructor(private _movieService: MovieService, private _platform: PlatformService){}
   public ngOnInit(): void {
+    console.log(this.selectionFilms)
     this._movieService.getMovieByOptions(this.selectionFilms.url)
       .pipe(takeUntil(this.destroy$))
       .subscribe((value: IApiResponse) => {

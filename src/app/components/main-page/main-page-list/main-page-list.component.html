@@ -24,7 +24,7 @@
     <ng-container *ngFor="let movie of movies">
       <a class="movie-list__item" routerLink="/film/{{movie.id}}">
         <img class="movie-list__img" [src]="movie.poster.url || movie.poster.previewUrl" alt="preview" (load)="showMovie = true">
-        <div *ngIf="showMovie" class="badge badge-{{movie.rating.kp | checkColorRating}}">{{movie.rating.kp | number: '1.1-1'}}</div>
+        <div *ngIf="showMovie && +movie.rating.kp > 0" class="badge badge-{{movie.rating.kp | checkColorRating}}">{{movie.rating.kp | number: '1.1-1'}}</div>
       </a>
     </ng-container>
   </div>

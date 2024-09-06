@@ -14,9 +14,10 @@ export interface CarouselConfigItem {
 
 export function getLatestPeriod(): string {
   const endDate: string = dayjs().format('DD.MM.YYYY');
-  const startDate: string = dayjs().subtract(4, 'month').format('DD.MM.YYYY');
+  const startDate: string = dayjs().subtract(1, 'year').format('DD.MM.YYYY');
 
-  return `&premiere.world=${startDate}-${endDate}`;
+  // return `&premiere.world=${startDate}-${endDate}`;
+  return `&year=${dayjs().year()}`;
 }
 
 export const MAIN_PAGE_CONFIG: CarouselConfigItem[] = [
@@ -26,7 +27,7 @@ export const MAIN_PAGE_CONFIG: CarouselConfigItem[] = [
   },
   {
     header: 'Новинки',
-    url: `&typeNumber=1&year=${dayjs().year() - 1}-${dayjs().year()}`,
+    url: `&typeNumber=1&year=${dayjs().year() - 1}-${dayjs().year()}&rating.kp=6-10`,
     years: `${dayjs().year() - 1}-${dayjs().year()}`,
   },
   {
@@ -36,22 +37,22 @@ export const MAIN_PAGE_CONFIG: CarouselConfigItem[] = [
   },
   {
     header: 'Драма',
-    url: `&typeNumber=1&rating.kp=6.5-10&genres.name=драма`,
+    url: `&typeNumber=1&rating.kp=6.5-10&genres.name=драма&rating`,
     genre: 'драма',
   },
   {
     header: 'Комедия',
-    url: `&typeNumber=1&rating.kp=6.5-10&genres.name=комедия`,
+    url: `&typeNumber=1&rating.kp=6.5-10&genres.name=комедия&rating`,
     genre: 'комедия'
   },
   {
     header: 'Боевик',
-    url: `&typeNumber=1&rating.kp=6.5-10&genres.name=боевик`,
+    url: `&typeNumber=1&rating.kp=6.5-10&genres.name=боевик&rating`,
     genre: 'боевик'
   },
   {
     header: 'Фантастика',
-    url: `&typeNumber=1&rating.kp=6.5-10&genres.name=фантастика`,
+    url: `&typeNumber=1&rating.kp=6.5-10&genres.name=фантастика&rating`,
     genre: 'фантастика'
   }
 ]

@@ -25,9 +25,24 @@
 </nav>
 
 <div>
-  <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-text grey icon" (click)="showSearchModal = true"></button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    icon="pi pi-search"
+    class="p-button-rounded p-button-text grey icon"
+    (click)="showSearchModal = true"
+  ></button>
 
-  <button *ngIf="!isDesktop" pButton pRipple type="button" icon="pi pi-bars" class="p-button-rounded p-button-text grey icon" (click)="showNavModal = true"></button>
+  <button
+    *ngIf="!isDesktop"
+    pButton
+    pRipple
+    type="button"
+    icon="pi pi-bars"
+    class="p-button-rounded p-button-text grey icon"
+    (click)="showNavModal = true"
+  ></button>
 </div>
 
 <p-sidebar class="sidebar" [(visible)]="showSearchModal" [fullScreen]="true" [baseZIndex]="10000">

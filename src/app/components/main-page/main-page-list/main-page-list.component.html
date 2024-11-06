@@ -1,7 +1,14 @@
 <ng-container *ngIf="isLargeMobile; else desktopHeader">
   <div class="movie-list__header">
     <h2>{{ header }}</h2>
-    <button pButton pRipple type="button" icon="pi pi-sliders-h" class="p-button-rounded p-button-text grey icon" (click)="showFiltersModal = true"></button>
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-sliders-h"
+      class="p-button-rounded p-button-text grey icon"
+      (click)="showFiltersModal = true"
+    ></button>
   </div>
 </ng-container>
 

@@ -1,42 +1,75 @@
 <div class="main-picture">
-  <img class="main-picture__img" [src]="movie?.backdrop?.url || movie?.backdrop?.previewUrl || '../../../../assets/img/cinema.jpg'" loading="lazy" alt="main movie picture">
+  <img
+    class="main-picture__img"
+    [src]="
+      movie?.backdrop?.url || movie?.backdrop?.previewUrl || '../../../../assets/img/cinema.jpg'
+    "
+    loading="lazy"
+    alt="main movie picture"
+  />
 </div>
 
 <div class="main-info">
-  <img *ngIf="movie?.logo?.url" class="main-info__logo" [src]="movie?.logo?.url" alt="logo">
+  <img *ngIf="movie?.logo?.url" class="main-info__logo" [src]="movie?.logo?.url" alt="logo" />
   <div class="main-info__title">
-    <h2 class="main-info__title-name">{{movie?.name}}</h2>
-    <span class="main-info__title-year">{{movie?.year}}</span>
+    <h2 class="main-info__title-name">{{ movie?.name }}</h2>
+    <span class="main-info__title-year">{{ movie?.year }}</span>
   </div>
   <div class="main-info__meta">
     <div *ngIf="!!movie?.rating?.kp" class="main-info__meta-rating">
-      <img src="../../../../assets/svg/kinopoisk-icon-colored-on-blackbackground.svg" alt="kp">
-      <span class="main-info__meta-rating_{{movie.rating.kp | checkColorRating}}">{{movie.rating.kp | number: '1.1-1'}}</span>
+      <img src="../../../../assets/svg/kinopoisk-icon-colored-on-blackbackground.svg" alt="kp" />
+      <span class="main-info__meta-rating_{{ movie.rating.kp | checkColorRating }}">{{
+        movie.rating.kp | number: '1.1-1'
+      }}</span>
     </div>
     <div *ngIf="!!movie?.rating?.imdb && !isLargeMobile" class="main-info__meta-rating">
-      <img src="../../../../assets/svg/imdb-svgrepo-com.svg" alt="imdb">
-      <span class="main-info__meta-rating_{{movie.rating.imdb | checkColorRating}}">{{movie.rating.imdb | number: '1.1-1'}}</span>
+      <img src="../../../../assets/svg/imdb-svgrepo-com.svg" alt="imdb" />
+      <span class="main-info__meta-rating_{{ movie.rating.imdb | checkColorRating }}">{{
+        movie.rating.imdb | number: '1.1-1'
+      }}</span>
     </div>
-    <span>{{movie?.genres | getNameInObject: 2}}</span>
-    <span *ngIf="!!movie?.movieLength && !movie?.isSeries">{{movie.movieLength}} мин</span>
-    <span *ngIf="!!movie?.seasonsInfo?.length">{{movie?.seasonsInfo?.length | correctWord}}</span>
-    <span *ngIf="movie?.ageRating">{{movie.ageRating}}+</span>
+    <span>{{ movie?.genres | getNameInObject: 2 }}</span>
+    <span *ngIf="!!movie?.movieLength && !movie?.isSeries">{{ movie.movieLength }} мин</span>
+    <span *ngIf="!!movie?.seasonsInfo?.length">{{ movie?.seasonsInfo?.length | correctWord }}</span>
+    <span *ngIf="movie?.ageRating">{{ movie.ageRating }}+</span>
   </div>
-  <p *ngIf="!!movie?.shortDescription" class="main-info__descr">{{movie.shortDescription}}</p>
+  <p *ngIf="!!movie?.shortDescription" class="main-info__descr">{{ movie.shortDescription }}</p>
   <div class="main-info__btn">
-    <button pButton type="button" label="Смотреть" icon="pi pi-play" (click)="showMovieClick()"></button>
-    <button *ngIf="!!trailerId" pButton type="button" label="Трейлер" class="p-button-secondary" (click)="showTrailer = true"></button>
-    <button pButton pRipple type="button" icon="pi pi-bookmark" class="p-button-rounded p-button-secondary"></button>
+    <button
+      pButton
+      type="button"
+      label="Смотреть"
+      icon="pi pi-play"
+      (click)="showMovieClick()"
+    ></button>
+    <button
+      *ngIf="!!trailerId"
+      pButton
+      type="button"
+      label="Трейлер"
+      class="p-button-secondary"
+      (click)="showTrailer = true"
+    ></button>
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-bookmark"
+      class="p-button-rounded p-button-secondary"
+    ></button>
   </div>
 </div>
 
 <p-sidebar class="sidebar" [(visible)]="showMovie" [fullScreen]="true" [baseZIndex]="10000">
-  <div class="kinobox_player" [style]="{height: '90%'}"></div>
-  <ng-template ></ng-template>
+  <div class="kinobox_player" [style]="{ height: '90%' }"></div>
+  <ng-template></ng-template>
 </p-sidebar>
 
-
-
-<p-dialog [header]="createModalHeader" [(visible)]="showTrailer" [modal]="true" [style]="isLargeMobile ? {width: '100%'} : {width: '50vw'}">
-  <youtube-player class="youtube-player" [videoId]="trailerId" placeholderImageQuality="standard"/>
+<p-dialog
+  [header]="createModalHeader"
+  [(visible)]="showTrailer"
+  [modal]="true"
+  [style]="isLargeMobile ? { width: '100%' } : { width: '50vw' }"
+>
+  <youtube-player class="youtube-player" [videoId]="trailerId" placeholderImageQuality="standard" />
 </p-dialog>

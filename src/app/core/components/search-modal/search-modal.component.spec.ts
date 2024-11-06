@@ -8,10 +8,9 @@ describe('SearchModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SearchModalComponent]
-    })
-    .compileComponents();
-    
+      declarations: [SearchModalComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(SearchModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,4 +1,4 @@
-@import "../../../style/mixins/_breakpoints.scss";
+@import '../../../style/mixins/_breakpoints.scss';
 
 :host {
   display: flex;
@@ -15,7 +15,7 @@
     align-items: center;
 
     span {
-      font-family: "Bangers", system-ui;
+      font-family: 'Bangers', system-ui;
       font-weight: 400;
       font-style: normal;
       font-size: 3rem;
@@ -30,17 +30,11 @@
     }
   }
 
-  &__icons {
-    display: flex;
-    gap: 1.25rem;
-  }
-
-
   &__nav {
     font-weight: 700;
     &-item {
       font-size: 1rem;
-      color: rgba(255,255,255,.56);
+      color: rgba(255, 255, 255, 0.56);
 
       &:not(:last-child) {
         margin-right: 2rem;
@@ -67,7 +61,7 @@
       &-item {
         font-size: 1.5rem;
         margin-right: 0;
-        padding-left: .5rem;
+        padding-left: 0.5rem;
         margin-bottom: 1.5rem;
 
         &_active {
@@ -95,7 +89,6 @@
     padding: 1rem;
   }
 }
-
 
 .icon {
   font-size: 1.5rem;

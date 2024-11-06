@@ -1,5 +1,5 @@
-import {IFilm} from "./films/film";
-import {IPerson} from "./films/person";
+import { IFilm } from './films/film';
+import { IPerson } from './films/person';
 
 /*Ответ API с фильмами*/
 export interface IApiResponse {

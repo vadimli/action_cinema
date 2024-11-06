@@ -1,4 +1,4 @@
-import {IShortFilmInfo} from "../films/short-film-info";
+import { IShortFilmInfo } from '../films/short-film-info';
 
 export interface IAwardRequest {
   docs: INominationInfo[];

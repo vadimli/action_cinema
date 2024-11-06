@@ -1,12 +1,14 @@
-import {SearchItem} from "../../shared/models/films/small-interfaces";
-import {GENRES} from "../../components/main-page/main-page.config";
-import {FilmListRequest} from "../../components/main-page/main-page-list/main-page-list.component";
+import { SearchItem } from '../../shared/models/films/small-interfaces';
+import { GENRES } from '../../components/main-page/main-page.config';
+import { FilmListRequest } from '../../components/main-page/main-page-list/main-page-list.component';
 
-export function  generateMovieListHeader(request: FilmListRequest): string {
+export function generateMovieListHeader(request: FilmListRequest): string {
   let typeList: string;
-  const selectedGenre: SearchItem = GENRES.find(item => !!request.genre && item.slug === request.genre)
-  const genre: string = !!selectedGenre ? `: ${selectedGenre.name}` : '';
-  switch(request.type) {
+  const selectedGenre: SearchItem = GENRES.find(
+    (item: SearchItem) => !!request.genre && item.slug === request.genre,
+  );
+  const genre: string = selectedGenre ? `: ${selectedGenre.name}` : '';
+  switch (request.type) {
     case 'tv-series':
       typeList = 'Сериалы';
       break;
@@ -14,9 +16,8 @@ export function  generateMovieListHeader(request: FilmListRequest): string {
       typeList = 'Мультфильмы';
       break;
     default:
-      typeList = 'Фильмы'
+      typeList = 'Фильмы';
       break;
   }
-  return  typeList + genre;
-
+  return typeList + genre;
 }

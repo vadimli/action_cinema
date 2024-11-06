@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {PersonFullInfo} from "../../../shared/models/person/person-full-info";
-import {IShortFilmInfo} from "../../../shared/models/films/short-film-info";
-import {INominationInfo} from "../../../shared/models/person/award";
+import { Component, Input, OnInit } from '@angular/core';
+import { PersonFullInfo } from '../../../shared/models/person/person-full-info';
+import { IShortFilmInfo } from '../../../shared/models/films/short-film-info';
+import { INominationInfo } from '../../../shared/models/person/award';
 
 interface TopFilmsConfig {
   title: string;
@@ -19,16 +19,16 @@ export type Award = 'Оскар' | 'Золотой глобус';
 @Component({
   selector: 'app-person-page-detailed',
   templateUrl: './person-page-detailed.component.html',
-  styleUrl: './person-page-detailed.component.scss'
+  styleUrl: './person-page-detailed.component.scss',
 })
-export class PersonPageDetailedComponent implements  OnInit{
+export class PersonPageDetailedComponent implements OnInit {
   @Input() public person: PersonFullInfo;
+
   @Input() public personAwards: INominationInfo[];
 
   public topFilms: TopFilmsConfig[] = [];
-  public awards: AwardsConfig[] = [];
 
-  constructor() {}
+  public awards: AwardsConfig[] = [];
 
   public ngOnInit(): void {
     this.getTopFilms();
@@ -40,40 +40,40 @@ export class PersonPageDetailedComponent implements  OnInit{
     const directorFilms: IShortFilmInfo[] = this.filterMoviesForPerson('director');
     const producerFilms: IShortFilmInfo[] = this.filterMoviesForPerson('producer');
 
-    if (!!actorFilms.length) {
+    if (actorFilms.length) {
       this.topFilms.push({
         title: 'Актер',
-        films: actorFilms
+        films: actorFilms,
       });
     }
-    if (!!directorFilms.length) {
+    if (directorFilms.length) {
       this.topFilms.push({
         title: 'Режиссер',
-        films: directorFilms
+        films: directorFilms,
       });
     }
-    if (!!producerFilms.length) {
+    if (producerFilms.length) {
       this.topFilms.push({
         title: 'Продюсер',
-        films: producerFilms
+        films: producerFilms,
       });
     }
   }
 
   private getawards(): void {
-  const oscarFilms: INominationInfo[] = this.filterAwards('Оскар');
-  const goldGlobeFilms: INominationInfo[] = this.filterAwards('Золотой глобус');
+    const oscarFilms: INominationInfo[] = this.filterAwards('Оскар');
+    const goldGlobeFilms: INominationInfo[] = this.filterAwards('Золотой глобус');
 
-    if (!!oscarFilms.length) {
+    if (oscarFilms.length) {
       this.awards.push({
         title: 'Оскар',
-        nominations: oscarFilms
+        nominations: oscarFilms,
       });
     }
-    if (!!goldGlobeFilms.length) {
+    if (goldGlobeFilms.length) {
       this.awards.push({
         title: 'Золотой глобус',
-        nominations: goldGlobeFilms
+        nominations: goldGlobeFilms,
       });
     }
   }
@@ -81,13 +81,16 @@ export class PersonPageDetailedComponent implements  OnInit{
   private filterAwards(award: Award): INominationInfo[] {
     return this.personAwards
       .filter((item: INominationInfo) => item.nomination.award.title === award)
-      .sort((a: INominationInfo, b: INominationInfo) => b.nomination.award.year - a.nomination.award.year);
+      .sort(
+        (a: INominationInfo, b: INominationInfo) =>
+          b.nomination.award.year - a.nomination.award.year,
+      );
   }
 
   private filterMoviesForPerson(profession: Profession): IShortFilmInfo[] {
     return this.person.movies
-            .filter((item: IShortFilmInfo) => !!item.rating && item.enProfession === profession)
-            .sort((a: IShortFilmInfo, b: IShortFilmInfo) => +b.rating - +a.rating)
-            .slice(0, 5);
+      .filter((item: IShortFilmInfo) => !!item.rating && item.enProfession === profession)
+      .sort((a: IShortFilmInfo, b: IShortFilmInfo) => +b.rating - +a.rating)
+      .slice(0, 5);
   }
 }

@@ -1,15 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {CarouselConfigItem, MAIN_PAGE_CONFIG} from "./main-page.config";
-
-
+import { Component } from '@angular/core';
+import { CarouselConfigItem, MAIN_PAGE_CONFIG } from './main-page.config';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
-  styleUrl: './main-page.component.scss'
+  styleUrl: './main-page.component.scss',
 })
-export class MainPageComponent implements OnInit {
-
+export class MainPageComponent {
   public mainPageConfig: CarouselConfigItem[] = MAIN_PAGE_CONFIG;
 
   public get mainCarouselValue(): CarouselConfigItem {
@@ -19,9 +16,4 @@ export class MainPageComponent implements OnInit {
   public get otherCarouselValue(): CarouselConfigItem[] {
     return this.mainPageConfig.filter((item: CarouselConfigItem) => !item.main);
   }
-
-  ngOnInit(): void {
-
-  }
-
 }

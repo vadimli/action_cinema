@@ -5,9 +5,11 @@
       <div class="detailed__films">
         <ng-container *ngFor="let item of topFilms">
           <div class="detailed__films-container">
-            <h2>{{item.title}}</h2>
+            <h2>{{ item.title }}</h2>
             <ng-container *ngFor="let film of item.films">
-              <a routerLink="/film/{{film.id}}" class="detailed__films-link grey">{{film.name}}</a>
+              <a routerLink="/film/{{ film.id }}" class="detailed__films-link grey">{{
+                film.name
+              }}</a>
             </ng-container>
           </div>
         </ng-container>
@@ -17,15 +19,17 @@
     <p-tabPanel *ngIf="!!awards.length" header="Награды">
       <ng-container *ngFor="let award of awards">
         <div class="detailed__award">
-          <h2>{{award.title}}</h2>
+          <h2>{{ award.title }}</h2>
           <ng-container *ngFor="let item of award.nominations">
             <div class="detailed__award-item">
-              <span >{{item.nomination.award.year}}</span>
+              <span>{{ item.nomination.award.year }}</span>
               <span>
-                {{item.nomination.title}}
-                <span>({{item.winning ? 'Победа' : 'Номинация'}})</span>
+                {{ item.nomination.title }}
+                <span>({{ item.winning ? 'Победа' : 'Номинация' }})</span>
               </span>
-              <a routerLink="/film/{{item.movie.id}}" class="detailed__films-link grey">{{item.movie.name}}</a>
+              <a routerLink="/film/{{ item.movie.id }}" class="detailed__films-link grey">{{
+                item.movie.name
+              }}</a>
             </div>
           </ng-container>
         </div>

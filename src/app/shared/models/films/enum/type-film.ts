@@ -1,7 +1,5 @@
-
 /*Код типа фильма*/
 export enum TypeFilm {
-
   /*Кино*/
   movie = 1,
 

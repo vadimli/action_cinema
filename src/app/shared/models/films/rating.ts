@@ -1,7 +1,5 @@
-
 /*Рейтинги от различных порталов*/
 export interface IRating {
-
   /*кинопоиск*/
   kp?: number | null | string;
 

@@ -1,4 +1,4 @@
-@import "../../../../style/mixins/_breakpoints.scss";
+@import '../../../../style/mixins/_breakpoints.scss';
 
 .person {
   display: flex;
@@ -23,7 +23,6 @@
   }
 
   &__info {
-
     &-list {
       display: flex;
       flex-direction: column;
@@ -63,5 +62,4 @@
       margin-left: 0;
     }
   }
-
 }

@@ -1,6 +1,5 @@
-import {ISpouse} from "./spouse";
-import {IShortFilmInfo} from "../films/short-film-info";
-
+import { ISpouse } from './spouse';
+import { IShortFilmInfo } from '../films/short-film-info';
 
 /*Полная инфо о персоне*/
 export interface PersonFullInfo {

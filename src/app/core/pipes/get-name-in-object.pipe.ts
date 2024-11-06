@@ -1,11 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {INames} from "../../shared/models/films/names";
+import { INames } from '../../shared/models/films/names';
 
 @Pipe({
-  name: 'getNameInObject'
+  name: 'getNameInObject',
 })
 export class GetNameInObjectPipe implements PipeTransform {
-
   transform(value: INames[] | undefined, quantity: number = 5): string {
     if (!!value && !!value.length) {
       const result: string[] = [];
@@ -15,9 +14,8 @@ export class GetNameInObjectPipe implements PipeTransform {
         }
       });
 
-      return result.join(', ')
+      return result.join(', ');
     }
     return '';
   }
-
 }

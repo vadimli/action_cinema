@@ -1,6 +1,9 @@
 <ng-container *ngIf="personAwards && person$ | async as person; else spinner">
   <app-person-page-main-info [person]="person"></app-person-page-main-info>
-  <app-person-page-detailed [person]="person" [personAwards]="personAwards"></app-person-page-detailed>
+  <app-person-page-detailed
+    [person]="person"
+    [personAwards]="personAwards"
+  ></app-person-page-detailed>
 </ng-container>
 <ng-template #spinner>
   <div class="spinner">

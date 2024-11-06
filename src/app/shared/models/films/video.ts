@@ -12,5 +12,3 @@ export interface IVideo {
   trailers?: IVideoUrl[];
   teasers?: IVideoUrl[];
 }
-
-

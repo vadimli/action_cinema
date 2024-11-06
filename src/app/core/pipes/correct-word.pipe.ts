@@ -1,10 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'correctWord'
+  name: 'correctWord',
 })
 export class CorrectWordPipe implements PipeTransform {
-
   transform(value: number | undefined): unknown {
     switch (value) {
       case 1:
@@ -21,5 +20,4 @@ export class CorrectWordPipe implements PipeTransform {
         return value + ' сезонов';
     }
   }
-
 }

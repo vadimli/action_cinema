@@ -1,4 +1,4 @@
-import {ISumValue} from "./sum-value";
+import { ISumValue } from './sum-value';
 
 export interface IFees {
   world?: ISumValue;

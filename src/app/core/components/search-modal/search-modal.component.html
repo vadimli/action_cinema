@@ -2,20 +2,33 @@
   <h1>Поиск</h1>
   <span class="p-input-icon-left search__input">
     <i class="pi pi-search"></i>
-    <input formControlName="search" style="width: 100%" type="text" pInputText placeholder="Название фильма, сериала или имя персоны" />
-</span>
+    <input
+      formControlName="search"
+      style="width: 100%"
+      type="text"
+      pInputText
+      placeholder="Название фильма, сериала или имя персоны"
+    />
+  </span>
 </form>
 
 <ng-container *ngIf="!!movies.length || !!persons.length">
   <div *ngIf="!!movies.length" class="search-result">
     <ng-container *ngFor="let movie of movies">
-      <a *ngIf="!!movie.name && !!movie.poster.url" class="search-result__item" routerLink="/film/{{movie.id}}" (click)="clickRoute()">
-        <img class="search-result__img" [src]="movie.poster.url" alt="preview"/>
+      <a
+        *ngIf="!!movie.name && !!movie.poster.url"
+        class="search-result__item"
+        routerLink="/film/{{ movie.id }}"
+        (click)="clickRoute()"
+      >
+        <img class="search-result__img" [src]="movie.poster.url" alt="preview" />
         <div class="search-result__name">
-          <h3>{{movie.name}}</h3>
+          <h3>{{ movie.name }}</h3>
           <span class="grey">
-            {{movie.year}}
-            <span class="badge badge-{{movie.rating.kp | checkColorRating}}">{{movie.rating.kp | number: '1.1-1'}}</span>
+            {{ movie.year }}
+            <span class="badge badge-{{ movie.rating.kp | checkColorRating }}">{{
+              movie.rating.kp | number: '1.1-1'
+            }}</span>
           </span>
         </div>
       </a>
@@ -26,10 +39,10 @@
     <h2 class="person-header">Персоны</h2>
     <div class="search-result">
       <ng-container *ngFor="let person of persons">
-        <a class="search-result__item" routerLink="/person/{{person.id}}" (click)="clickRoute()">
-          <img class="search-result__img" [src]="person.photo" alt="preview"/>
+        <a class="search-result__item" routerLink="/person/{{ person.id }}" (click)="clickRoute()">
+          <img class="search-result__img" [src]="person.photo" alt="preview" />
           <div class="search-result__name">
-            <h3>{{person.name}}</h3>
+            <h3>{{ person.name }}</h3>
             <span class="grey"></span>
           </div>
         </a>
@@ -39,4 +52,3 @@
 </ng-container>
 
 <p-progressSpinner *ngIf="showSpinner" class="spinner"></p-progressSpinner>
-

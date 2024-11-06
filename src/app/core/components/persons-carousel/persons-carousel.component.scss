@@ -1,4 +1,4 @@
-@import "../../../../style/mixins/_breakpoints.scss";
+@import '../../../../style/mixins/_breakpoints.scss';
 
 .carousel {
   width: 100%;
@@ -9,7 +9,7 @@
   flex-direction: column;
 
   &__title {
-    margin: .5rem 0;
+    margin: 0.5rem 0;
   }
 
   &__img {
@@ -26,7 +26,6 @@
       margin-left: 2rem;
     }
   }
-
 }
 
 @include media-breakpoint-down(sm) {
@@ -36,5 +35,4 @@
       margin-left: 1rem;
     }
   }
-
 }

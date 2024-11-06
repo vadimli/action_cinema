@@ -1,4 +1,3 @@
-
 export interface IPerson {
   /*Id персоны с кинопоиска*/
   id?: number | null;

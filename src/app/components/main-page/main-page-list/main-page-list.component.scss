@@ -1,4 +1,4 @@
-@import "../../../../style/mixins/_breakpoints.scss";
+@import '../../../../style/mixins/_breakpoints.scss';
 
 :host {
   padding: 0 6rem;
@@ -38,8 +38,8 @@
   gap: 1rem;
 
   &__checkbox {
-    label {
-      margin-left: .5rem;
+    span {
+      margin-left: 0.5rem;
       color: rgba(255, 255, 255, 0.87);
     }
   }
@@ -104,13 +104,12 @@
       }
     }
   }
-
 }
 
 @include media-breakpoint-down(md) {
   .movie-list {
     grid-template-columns: auto auto auto;
-    gap: .75rem;
+    gap: 0.75rem;
     margin-top: 0;
 
     &__header {
@@ -124,5 +123,3 @@
     flex-direction: column;
   }
 }
-
-

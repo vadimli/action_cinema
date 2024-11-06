@@ -1,11 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {ValueINfo} from "../../shared/models/person/person-full-info";
+import { ValueINfo } from '../../shared/models/person/person-full-info';
 
 @Pipe({
-  name: 'getValueInObject'
+  name: 'getValueInObject',
 })
 export class GetValueInObjectPipe implements PipeTransform {
-
   transform(value: ValueINfo[]): string {
     if (!!value && !!value.length) {
       const result: string[] = [];
@@ -13,7 +12,7 @@ export class GetValueInObjectPipe implements PipeTransform {
         result.push(item.value as string);
       });
 
-      return result.join(', ')
+      return result.join(', ');
     }
     return '';
   }

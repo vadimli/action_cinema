@@ -1,4 +1,4 @@
-import {IFilmPicture} from "./film-picture";
+import { IFilmPicture } from './film-picture';
 
 export interface IReviewInfo {
   count?: number | null;
@@ -23,10 +23,10 @@ export interface IWatchItem {
 
 export interface IAudience {
   /*Количество просмотров в кино*/
-  count: number
+  count: number;
 
   /*Страна в которой проходил показ*/
-  country: string
+  country: string;
 }
 
 export interface INetwork {
@@ -54,7 +54,3 @@ export interface SearchItem {
   name: string;
   slug: string;
 }
-
-
-
-

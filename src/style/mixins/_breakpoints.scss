@@ -1,6 +1,10 @@
-@import "../_variable.scss";
+@import '../_variable.scss';
 
-@function breakpoint-next($name, $breakpoints: $breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+@function breakpoint-next(
+  $name,
+  $breakpoints: $breakpoints,
+  $breakpoint-names: map-keys($breakpoints)
+) {
   $n: index($breakpoint-names, $name);
   @return if($n != null and $n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
 }
@@ -12,9 +16,8 @@
 
 @function breakpoint-max($name, $breakpoints: $breakpoints) {
   $next: breakpoint-next($name, $breakpoints);
-  @return if($next, breakpoint-min($name, $breakpoints) - .02, null);
+  @return if($next, breakpoint-min($name, $breakpoints) - 0.02, null);
 }
-
 
 @mixin media-breakpoint-up($name, $breakpoints: $breakpoints) {
   $min: breakpoint-min($name, $breakpoints);
@@ -37,5 +40,3 @@
     @content;
   }
 }
-
-

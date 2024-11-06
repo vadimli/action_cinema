@@ -1,13 +1,19 @@
-<p-carousel [value]="persons" [numVisible]="10" [numScroll]="1" [showIndicators]="false" [responsiveOptions]="responsiveOptions" [showNavigators]="isDesktop">
+<p-carousel
+  [value]="persons"
+  [numVisible]="10"
+  [numScroll]="1"
+  [showIndicators]="false"
+  [responsiveOptions]="responsiveOptions"
+  [showNavigators]="isDesktop"
+>
   <ng-template pTemplate="header">
     <h1 class="carousel__header">Актёры и съёмочная группа</h1>
   </ng-template>
   <ng-template let-person pTemplate="item">
-    <a routerLink="/person/{{person.id}}" class="carousel">
-      <img class="carousel__img" [src]="person.photo" alt="preview">
-      <span class="carousel__title">{{person.name}}</span>
-      <span class="grey">{{person.profession}}</span>
+    <a routerLink="/person/{{ person.id }}" class="carousel">
+      <img class="carousel__img" [src]="person.photo" alt="preview" />
+      <span class="carousel__title">{{ person.name }}</span>
+      <span class="grey">{{ person.profession }}</span>
     </a>
   </ng-template>
 </p-carousel>
-

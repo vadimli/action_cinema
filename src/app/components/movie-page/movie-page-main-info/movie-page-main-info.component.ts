@@ -1,9 +1,8 @@
-import {Component, Inject, Input, OnInit, Renderer2} from '@angular/core';
-import {IFilm} from "../../../shared/models/films/film";
-import {IVideoUrl} from "../../../shared/models/films/video";
-import {DOCUMENT} from "@angular/common";
-import {PlatformService} from "../../../shared/services/platform.service";
-
+import { Component, Inject, Input, OnInit, Renderer2 } from '@angular/core';
+import { IFilm } from '../../../shared/models/films/film';
+import { IVideoUrl } from '../../../shared/models/films/video';
+import { DOCUMENT } from '@angular/common';
+import { PlatformService } from '../../../shared/services/platform.service';
 
 @Component({
   selector: 'app-movie-page-main-info',
@@ -11,33 +10,31 @@ import {PlatformService} from "../../../shared/services/platform.service";
   styleUrl: './movie-page-main-info.component.scss',
 })
 export class MoviePageMainInfoComponent implements OnInit {
-
   @Input() public movie: IFilm;
 
   public trailerId: string;
-  public showTrailer = false;
-  public showMovie = false;
 
+  public showTrailer = false;
+
+  public showMovie = false;
 
   public get createModalHeader(): string {
     return `${this.movie.name}, ${this.movie.year}`;
   }
 
   public get isLargeMobile(): boolean {
-    return  this._platform.isLargeMobile();
+    return this._platform.isLargeMobile();
   }
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer2: Renderer2,
-    private _platform: PlatformService
+    private _platform: PlatformService,
   ) {}
 
   public ngOnInit(): void {
     this.trailerId = this.getTrailerId(this.movie?.videos?.trailers);
   }
-
-
 
   private getTrailerId(trailers: IVideoUrl[]): string {
     if (!trailers?.length) {
@@ -50,16 +47,19 @@ export class MoviePageMainInfoComponent implements OnInit {
   }
 
   public showMovieClick(): void {
-    this.loadScript('https://kinobox.tv/kinobox.min.js').then(
-      () => this.loadTextScript(`
+    this.loadScript('https://kinobox.tv/kinobox.min.js').then(() =>
+      this.loadTextScript(
+        `
           setTimeout(() => {
             kbox('.kinobox_player', {search: {kinopoisk: ${this.movie?.id.toString()}}});
           }, 0);
-      `).then(() => this.showMovie = true));
+      `,
+      ).then(() => (this.showMovie = true)),
+    );
   }
 
   private loadTextScript(text: string) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       const script = this.renderer2.createElement('script');
       script.text = text;
       this.renderer2.appendChild(this.document.body, script);

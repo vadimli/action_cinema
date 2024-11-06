@@ -1,14 +1,31 @@
 <ng-container *ngIf="movies; else skeleton">
-  <p-carousel [value]="movies" [responsiveOptions]="getResponsiveOptions" [numVisible]="amountItem" [numScroll]="1" [showIndicators]="false" [showNavigators]="isDesktop">
+  <p-carousel
+    [value]="movies"
+    [responsiveOptions]="getResponsiveOptions"
+    [numVisible]="amountItem"
+    [numScroll]="1"
+    [showIndicators]="false"
+    [showNavigators]="isDesktop"
+  >
     <ng-template pTemplate="header">
-      <a routerLink="movie" [queryParams]="{genre: selectionFilms.genre, topKp: selectionFilms.topKp, years: selectionFilms.years}" class="header">
-        <h1>{{selectionFilms.header}}</h1>
+      <a
+        routerLink="movie"
+        [queryParams]="{
+          genre: selectionFilms.genre,
+          topKp: selectionFilms.topKp,
+          years: selectionFilms.years,
+        }"
+        class="header"
+      >
+        <h1>{{ selectionFilms.header }}</h1>
       </a>
     </ng-template>
     <ng-template let-movie pTemplate="item">
-      <a routerLink="film/{{movie.id}}" class="carousel">
-        <img class="carousel__img" [src]="movie.poster.previewUrl" alt="preview">
-        <div class="badge badge-{{movie.rating.kp | checkColorRating}}">{{movie.rating.kp | number: '1.1-1'}}</div>
+      <a routerLink="film/{{ movie.id }}" class="carousel">
+        <img class="carousel__img" [src]="movie.poster.previewUrl" alt="preview" />
+        <div class="badge badge-{{ movie.rating.kp | checkColorRating }}">
+          {{ movie.rating.kp | number: '1.1-1' }}
+        </div>
       </a>
     </ng-template>
   </p-carousel>
@@ -18,9 +35,3 @@
   <p-skeleton width="10rem" height="4rem" styleClass="mb-2"></p-skeleton>
   <p-skeleton width="100%" height="19rem" styleClass="mb-4"></p-skeleton>
 </ng-template>
-
-
-
-
-
-

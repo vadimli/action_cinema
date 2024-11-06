@@ -1,6 +1,5 @@
-
-import dayjs from "dayjs";
-import {SearchItem} from "../../shared/models/films/small-interfaces";
+import dayjs from 'dayjs';
+import { SearchItem } from '../../shared/models/films/small-interfaces';
 
 export interface CarouselConfigItem {
   header?: string;
@@ -13,8 +12,8 @@ export interface CarouselConfigItem {
 }
 
 export function getLatestPeriod(): string {
-  const endDate: string = dayjs().format('DD.MM.YYYY');
-  const startDate: string = dayjs().subtract(1, 'year').format('DD.MM.YYYY');
+  // const endDate: string = dayjs().format('DD.MM.YYYY');
+  // const startDate: string = dayjs().subtract(1, 'year').format('DD.MM.YYYY');
 
   // return `&premiere.world=${startDate}-${endDate}`;
   return `&year=${dayjs().year()}`;
@@ -23,7 +22,7 @@ export function getLatestPeriod(): string {
 export const MAIN_PAGE_CONFIG: CarouselConfigItem[] = [
   {
     url: '&rating.kp=7-10' + getLatestPeriod(),
-    main: true
+    main: true,
   },
   {
     header: 'Новинки',
@@ -43,19 +42,19 @@ export const MAIN_PAGE_CONFIG: CarouselConfigItem[] = [
   {
     header: 'Комедия',
     url: `&typeNumber=1&rating.kp=6.5-10&genres.name=комедия&rating`,
-    genre: 'комедия'
+    genre: 'комедия',
   },
   {
     header: 'Боевик',
     url: `&typeNumber=1&rating.kp=6.5-10&genres.name=боевик&rating`,
-    genre: 'боевик'
+    genre: 'боевик',
   },
   {
     header: 'Фантастика',
     url: `&typeNumber=1&rating.kp=6.5-10&genres.name=фантастика&rating`,
-    genre: 'фантастика'
-  }
-]
+    genre: 'фантастика',
+  },
+];
 
 /*Список жанров*/
 export const GENRES: SearchItem[] = [
@@ -91,8 +90,5 @@ export const RATINGS: SearchItem[] = [
   { name: 'Рейтинг', slug: '' },
   { name: 'от 8', slug: '8-10' },
   { name: 'от 7', slug: '7-10' },
-  { name: 'от 6', slug: '6-10' }
+  { name: 'от 6', slug: '6-10' },
 ];
-
-
-

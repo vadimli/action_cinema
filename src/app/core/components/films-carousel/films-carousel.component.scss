@@ -5,8 +5,8 @@
   text-decoration: none;
   color: white;
   position: relative;
-  transition: .5s;
-  margin: .5rem;
+  transition: 0.5s;
+  margin: 0.5rem;
 
   &:hover {
     transform: scale(1.05);
@@ -20,7 +20,7 @@
 }
 
 .header {
-  transition: .1s linear;
+  transition: 0.1s linear;
 
   &:hover {
     color: #2dd4bf;

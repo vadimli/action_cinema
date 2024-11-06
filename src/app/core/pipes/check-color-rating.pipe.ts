@@ -1,10 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'checkColorRating'
+  name: 'checkColorRating',
 })
 export class CheckColorRatingPipe implements PipeTransform {
-
   transform(value: number | string | undefined): string {
     switch (true) {
       case +value >= 7 && +value < 8:
@@ -17,5 +16,4 @@ export class CheckColorRatingPipe implements PipeTransform {
         return 'white';
     }
   }
-
 }

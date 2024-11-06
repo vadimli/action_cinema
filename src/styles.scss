@@ -1,5 +1,13 @@
-html, body { height: 100%; }
-body { margin: 0; font-family: Rubik, "Helvetica Neue", sans-serif; background-color: black; color: white}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Rubik, 'Helvetica Neue', sans-serif;
+  background-color: black;
+  color: white;
+}
 
 a {
   text-decoration: none;
@@ -19,7 +27,7 @@ a {
 }
 
 .grey {
-  color: rgba(255,255,255,.56);
+  color: rgba(255, 255, 255, 0.56);
 }
 
 .badge {
@@ -27,11 +35,11 @@ a {
   top: 2%;
   left: 4%;
   color: #ffffff;
-  padding: .2rem;
-  border-radius: .5rem;
+  padding: 0.2rem;
+  border-radius: 0.5rem;
 
   &-white {
-    background-color: rgba(255,255,255,.56);
+    background-color: rgba(255, 255, 255, 0.56);
   }
 
   &-red {

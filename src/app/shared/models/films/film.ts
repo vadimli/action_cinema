@@ -1,17 +1,24 @@
-import {IShortFilmInfo} from "./short-film-info";
-import {IPerson} from "./person";
-import {ImagesInfo} from "./images-info";
-import {IFees} from "./fees";
-import {ISumValue} from "./sum-value";
-import {IExternalId} from "./external-id";
-import {IVideo} from "./video";
-import {INames} from "./names";
-import {IFilmPicture} from "./film-picture";
-import {IRating} from "./rating";
-import {TypeFilm} from "./enum/type-film";
-import {IReleaseYears} from "./release-years";
-import {IAudience, IFact, IImagesInfo, INetwork, IReviewInfo, ISeasonsInfo, IWatchability} from "./small-interfaces";
-import {IPremiere} from "./premiere";
+import { IShortFilmInfo } from './short-film-info';
+import { IPerson } from './person';
+import { IFees } from './fees';
+import { ISumValue } from './sum-value';
+import { IExternalId } from './external-id';
+import { IVideo } from './video';
+import { INames } from './names';
+import { IFilmPicture } from './film-picture';
+import { IRating } from './rating';
+import { TypeFilm } from './enum/type-film';
+import { IReleaseYears } from './release-years';
+import {
+  IAudience,
+  IFact,
+  IImagesInfo,
+  INetwork,
+  IReviewInfo,
+  ISeasonsInfo,
+  IWatchability,
+} from './small-interfaces';
+import { IPremiere } from './premiere';
 
 export interface IFilm {
   /*ID фильма*/
@@ -156,20 +163,19 @@ export interface IFilm {
   imagesInfo: IImagesInfo;
 
   /*Коллекции*/
-  collections?: unknown[],
+  collections?: unknown[];
 
   /*Производственные компании*/
-  productionCompanies?: unknown[],
+  productionCompanies?: unknown[];
 
   /*Языки в фильме*/
-  spokenLanguages?: unknown[],
+  spokenLanguages?: unknown[];
 
   /*Языки в фильме*/
-  technology?: unknown,
+  technology?: unknown;
 
   /*Дата удаления*/
   deletedAt: string;
 
   apiPicture?: string;
-
 }

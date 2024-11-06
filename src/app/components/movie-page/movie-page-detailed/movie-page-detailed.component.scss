@@ -1,4 +1,4 @@
-@import "../../../../style/mixins/_breakpoints.scss";
+@import '../../../../style/mixins/_breakpoints.scss';
 
 :host {
   display: block;
@@ -20,7 +20,7 @@
     grid-template-columns: 6rem 1fr;
 
     &-title {
-      color: rgba(255,255,255,.56);
+      color: rgba(255, 255, 255, 0.56);
     }
   }
 }
@@ -34,7 +34,6 @@
   .detailed-tabs {
     max-width: 100%;
     padding-top: 0.75rem;
-
   }
 }
 

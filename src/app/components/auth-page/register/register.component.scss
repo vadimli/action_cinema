@@ -1,0 +1,22 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+
+  &__field{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    gap: .25rem;
+  }
+
+  .btn {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

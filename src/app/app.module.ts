@@ -6,8 +6,13 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { NgClass } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { TokenInterceptors } from './shared/classes/token.interceptor';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClientModule,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
+import { KinopoiskTokenInterceptor } from './shared/classes/kinopoisk-token.interceptor';
 import { MainPageModule } from './components/main-page/main-page.module';
 import { MoviePageModule } from './components/movie-page/movie-page.module';
 import { RouterLinkActive, RouterModule } from '@angular/router';
@@ -16,6 +21,9 @@ import { PrimengModule } from './primeng.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { PersonPageModule } from './components/person-page/person-page.module';
 import { LayoutModule } from '@angular/cdk/layout';
+import { authTokenInterceptor } from './shared/classes/auth-token.interceptor';
+import { AuthPageModule } from './components/auth-page/auth-page.module';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -33,13 +41,17 @@ import { LayoutModule } from '@angular/cdk/layout';
     PersonPageModule,
     RouterLinkActive,
     LayoutModule,
+    AuthPageModule,
+    DynamicDialogModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       multi: true,
-      useClass: TokenInterceptors,
+      useClass: KinopoiskTokenInterceptor,
     },
+    provideHttpClient(withInterceptors([authTokenInterceptor])),
+    DialogService,
   ],
   bootstrap: [AppComponent],
 })

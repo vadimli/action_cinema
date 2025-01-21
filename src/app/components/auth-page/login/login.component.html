@@ -1,0 +1,42 @@
+<div class="header">
+  <h2>Войти</h2>
+
+  <p-button label="Зарегистрироваться" styleClass="p-button-link" (click)="navigateToRegister()"></p-button>
+</div>
+
+<form class="login-form"
+      [formGroup]="form"
+      (ngSubmit)="submit()"
+      #ngForm="ngForm">
+  <div class="login-form__field">
+    <label for="login" class="block">Email</label>
+    <input
+      id="login"
+      type="email"
+      pInputText
+      placeholder="example@mail.ru"
+    />
+
+    <small *ngIf="login.hasError('required') && login.touched" id="login-help" class="p-error">Обязательное поле.</small>
+  </div>
+
+  <div class="login-form__field">
+    <label for="password" class="block">Пароль</label>
+    <input
+      id="password"
+      type="password"
+      pInputText
+      placeholder="Пароль"
+    />
+
+    <small *ngIf="password.hasError('required') && password.touched" id="password-help" class="p-error">Обязательное поле.</small>
+  </div>
+
+  <p-button
+    class="btn"
+    label="Войти"
+    [disabled]="form.invalid"
+    (click)="ngForm.onSubmit($event)"
+  ></p-button>
+
+</form>

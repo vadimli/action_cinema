@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MovieService } from '../../shared/services/movie.service';
 import { ReplaySubject, takeUntil } from 'rxjs';
 import { PlatformService } from '../../shared/services/platform.service';
+import { DialogService } from 'primeng/dynamicdialog';
+import {AuthPageComponent} from "../auth-page/auth-page.component";
 
 @Component({
   selector: 'app-header',
@@ -20,6 +22,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private _movieService: MovieService,
     private _platform: PlatformService,
+    public dialogService: DialogService,
   ) {}
 
   public ngOnInit(): void {

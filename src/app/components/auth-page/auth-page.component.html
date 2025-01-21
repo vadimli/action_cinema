@@ -1,0 +1,9 @@
+<ng-container *ngIf="queryParam === 'register'; else login">
+  <app-register></app-register>
+</ng-container>
+
+<ng-template #login>
+  <app-login></app-login>
+</ng-template>
+
+

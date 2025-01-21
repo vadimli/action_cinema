@@ -25,33 +25,33 @@ export class MovieService {
     page: number = 1,
   ): Observable<IApiResponse> {
     return this._http.get<IApiResponse>(
-      `${environment.apiUrl}movie?${REQUIRED_FIELDS}&page=${page}&limit=${limit}${url}`,
+      `${environment.apiKinopoiskUrl}movie?${REQUIRED_FIELDS}&page=${page}&limit=${limit}${url}`,
     );
   }
 
   public getMovieById(id: number): Observable<IFilm> {
-    return this._http.get<IFilm>(`${environment.apiUrl}movie/${id}`);
+    return this._http.get<IFilm>(`${environment.apiKinopoiskUrl}movie/${id}`);
   }
 
   public getPersonById(id: number): Observable<PersonFullInfo> {
-    return this._http.get<PersonFullInfo>(`${environment.apiUrl}person/${id}`);
+    return this._http.get<PersonFullInfo>(`${environment.apiKinopoiskUrl}person/${id}`);
   }
 
   public getPersonAwards(id: string): Observable<IAwardRequest> {
     return this._http.get<IAwardRequest>(
-      `${environment.apiUrl}person/awards?page=1&limit=50&personId=${id}`,
+      `${environment.apiKinopoiskUrl}person/awards?page=1&limit=50&personId=${id}`,
     );
   }
 
   public searchMoviesByName(query: string): Observable<IApiResponse> {
     return this._http.get<IApiResponse>(
-      `${environment.apiUrl}movie/search?page=1&limit=6&query=${query}`,
+      `${environment.apiKinopoiskUrl}movie/search?page=1&limit=6&query=${query}`,
     );
   }
 
   public searchPersonByName(query: string): Observable<IApiResponse> {
     return this._http.get<IApiResponse>(
-      `${environment.apiUrl}person/search?page=1&limit=6&query=${query}`,
+      `${environment.apiKinopoiskUrl}person/search?page=1&limit=6&query=${query}`,
     );
   }
 }

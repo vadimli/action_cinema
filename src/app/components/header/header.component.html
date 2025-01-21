@@ -49,6 +49,10 @@
   <app-search-modal></app-search-modal>
 </p-sidebar>
 
+<p-sidebar class="sidebar" [visible]="true" [fullScreen]="true"  [baseZIndex]="10000">
+  <app-auth-page></app-auth-page>
+</p-sidebar>
+
 <p-sidebar class="sidebar" [(visible)]="showNavModal" [fullScreen]="true" [baseZIndex]="10000">
   <nav class="header__nav">
     <a

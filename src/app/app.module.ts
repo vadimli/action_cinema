@@ -24,6 +24,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { authTokenInterceptor } from './shared/classes/auth-token.interceptor';
 import { AuthPageModule } from './components/auth-page/auth-page.module';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { CabinetModule } from './components/cabinet/cabinet.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -43,6 +44,7 @@ import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
     LayoutModule,
     AuthPageModule,
     DynamicDialogModule,
+    CabinetModule,
   ],
   providers: [
     {

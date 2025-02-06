@@ -5,7 +5,7 @@ export const authTokenInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
   next: HttpHandlerFn,
 ) => {
-  if (req.url.includes(environment.apiBaseUrl)) {
+  if (req.url.includes(environment.apiBaseUrl) && localStorage.getItem('authToken') !== null) {
     req = req.clone({
       setHeaders: {
         Authorization: `Bearer ${localStorage.getItem('authToken')}`,

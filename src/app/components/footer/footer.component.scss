@@ -4,12 +4,7 @@
   text-align: center;
   font-size: small;
   width: 100%;
-  padding: 0 6rem 1.25rem 6rem;
+  padding-bottom: 1.25rem;
   flex: 0 0 auto;
-}
-
-@include media-breakpoint-down(lg) {
-  :host {
-    padding: 0 1rem 1.25rem 1rem;
-  }
+  margin-top: auto;
 }

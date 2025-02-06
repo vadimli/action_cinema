@@ -1,10 +1,10 @@
 <p-divider></p-divider>
 <div class="detailed-tabs">
   <p-tabView>
-    <p-tabPanel header="Описание">
+    <p-tabPanel *ngIf="!!movie.description" header="Описание">
       <p class="detailed-tabs__text">{{ movie.description }}</p>
     </p-tabPanel>
-    <p-tabPanel header="Информация">
+    <p-tabPanel *ngIf="!!movie.countries || !!movie.genres || !!movie.alternativeName || !!movie.premiere.world" header="Информация">
       <div class="detailed-tabs__list">
         <span class="detailed-tabs__list-title">Страна</span>
         <span>{{ movie.countries | getNameInObject }}</span>

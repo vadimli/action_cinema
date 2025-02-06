@@ -25,32 +25,15 @@
 </nav>
 
 <div>
-  <button
-    pButton
-    pRipple
-    type="button"
-    icon="pi pi-search"
-    class="p-button-rounded p-button-text grey icon"
-    (click)="showSearchModal = true"
-  ></button>
+  <p-button icon="pi pi-search" [rounded]="true" [text]="true" [raised]="true" severity="secondary" (click)="showSearchModal = true"/>
 
-  <button
-    *ngIf="!isDesktop"
-    pButton
-    pRipple
-    type="button"
-    icon="pi pi-bars"
-    class="p-button-rounded p-button-text grey icon"
-    (click)="showNavModal = true"
-  ></button>
+
+  <p-button *ngIf="!isDesktop" icon="pi pi-bars" [rounded]="true" [text]="true" [raised]="true" severity="secondary" (click)="showNavModal = true"/>
+  <p-button icon="pi pi-user" [rounded]="true" [outlined]="userIsAuthorized" [text]="true" routerLink="/cabinet" />
 </div>
 
 <p-sidebar class="sidebar" [(visible)]="showSearchModal" [fullScreen]="true" [baseZIndex]="10000">
   <app-search-modal></app-search-modal>
-</p-sidebar>
-
-<p-sidebar class="sidebar" [visible]="true" [fullScreen]="true"  [baseZIndex]="10000">
-  <app-auth-page></app-auth-page>
 </p-sidebar>
 
 <p-sidebar class="sidebar" [(visible)]="showNavModal" [fullScreen]="true" [baseZIndex]="10000">

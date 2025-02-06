@@ -5,6 +5,8 @@ import { MoviePageComponent } from './components/movie-page/movie-page.component
 import { PersonPageComponent } from './components/person-page/person-page.component';
 import { MainPageListComponent } from './components/main-page/main-page-list/main-page-list.component';
 import { AuthPageComponent } from './components/auth-page/auth-page.component';
+import { CabinetComponent } from './components/cabinet/cabinet.component';
+import { authGuard } from './shared/classes/auth.guard';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent },
@@ -15,6 +17,7 @@ const routes: Routes = [
   { path: 'film/:id', component: MoviePageComponent },
   { path: 'person/:id', component: PersonPageComponent },
   { path: 'auth', component: AuthPageComponent },
+  { path: 'cabinet', component: CabinetComponent, canActivate: [authGuard] },
 ];
 
 @NgModule({

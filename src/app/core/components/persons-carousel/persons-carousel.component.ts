@@ -15,8 +15,8 @@ const PERSON_CAROUSEL_CONFIG: ResponsiveOptions[] = [
     numScroll: 2,
   },
   {
-    breakpoint: '1200px',
-    numVisible: 8,
+    breakpoint: '1500px',
+    numVisible: 7,
     numScroll: 2,
   },
 ];

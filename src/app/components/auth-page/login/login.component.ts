@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthForm } from '../register/register.component';
+import { AuthService } from '../../../shared/services/auth.service';
+import { catchError, of, ReplaySubject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+  private destroy$: ReplaySubject<void> = new ReplaySubject<void>(1);
+
   public form: FormGroup;
 
   public get login(): AbstractControl {
@@ -21,6 +26,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private _router: Router,
+    private _authService: AuthService,
   ) {}
 
   public ngOnInit(): void {
@@ -30,7 +36,23 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public submit(): void {}
+  public submit(): void {
+    const { login, password }: AuthForm = this.form.value as AuthForm;
+
+    this._authService
+      .login(login, password)
+      .pipe(
+        takeUntil(this.destroy$),
+        catchError((error: unknown) => {
+          console.log(error);
+          this.form.enable();
+          return of(null);
+        }),
+      )
+      .subscribe(() => {
+        this._router.navigate(['/cabinet']);
+      });
+  }
 
   public navigateToRegister(): void {
     this._router.navigate(['/auth'], {
@@ -38,5 +60,10 @@ export class LoginComponent implements OnInit {
         form: 'register',
       },
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

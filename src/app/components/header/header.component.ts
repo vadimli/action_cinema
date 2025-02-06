@@ -3,7 +3,6 @@ import { MovieService } from '../../shared/services/movie.service';
 import { ReplaySubject, takeUntil } from 'rxjs';
 import { PlatformService } from '../../shared/services/platform.service';
 import { DialogService } from 'primeng/dynamicdialog';
-import {AuthPageComponent} from "../auth-page/auth-page.component";
 
 @Component({
   selector: 'app-header',
@@ -17,6 +16,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public get isDesktop(): boolean {
     return this._platform.isDesktop();
+  }
+
+  public get userIsAuthorized(): boolean {
+    return localStorage.getItem('authUser') !== null;
   }
 
   constructor(

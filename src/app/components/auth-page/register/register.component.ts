@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -8,13 +8,23 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../shared/services/auth.service';
+import { catchError, of, ReplaySubject, takeUntil } from 'rxjs';
+
+export interface AuthForm {
+  login: string;
+  password: string;
+  repeatPassword?: string;
+}
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
+  private destroy$: ReplaySubject<void> = new ReplaySubject<void>(1);
+
   public form: FormGroup;
 
   public get repeatPasswordInvalid(): boolean {
@@ -32,6 +42,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private _router: Router,
+    private _authService: AuthService,
   ) {}
 
   public ngOnInit(): void {
@@ -45,7 +56,23 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  public submit(): void {}
+  public submit(): void {
+    const { login, password }: AuthForm = this.form.value as AuthForm;
+
+    this._authService
+      .registration(login, password)
+      .pipe(
+        takeUntil(this.destroy$),
+        catchError((error: unknown) => {
+          console.log(error);
+          this.form.enable();
+          return of(null);
+        }),
+      )
+      .subscribe(() => {
+        this._router.navigate(['/cabinet']);
+      });
+  }
 
   public navigateToLogin(): void {
     this._router.navigate(['/auth'], {
@@ -66,5 +93,10 @@ export class RegisterComponent implements OnInit {
 
       return null;
     };
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

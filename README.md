@@ -1,27 +1,32 @@
-# Kinoservice
+# Action Cinema
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
+**Action Cinema** — это веб-приложение для поиска, фильтрации и просмотра информации о фильмах, созданное с использованием Angular. Проект предоставляет удобный интерфейс для пользователей, позволяющий находить фильмы по различным критериям, а также включает функционал авторизации для персонализированного взаимодействия.
 
-## Development server
+## Основные функции
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Просмотр фильмов**:  
+  Пользователи могут просматривать информацию о фильмах, включая название, описание, рейтинг, жанр и постер.
 
-## Code scaffolding
+- **Поиск и фильтрация**:  
+  Реализован удобный поиск по названию фильма, а также фильтрация по жанру, году выпуска и рейтингу.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Авторизация пользователя**:  
+  Возможность регистрации и входа в систему для персонализированного взаимодействия (например, сохранение избранных фильмов).
 
-## Build
+- **Адаптивный дизайн**:  
+  Приложение корректно отображается на различных устройствах, включая мобильные телефоны, планшеты и десктопы.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Технологии
 
-## Running unit tests
+### Frontend:
+- **Angular** (TypeScript, HTML, SCSS)
+- **PrimeNJ** для компонентов интерфейса
+- **RxJS** для работы с асинхронными операциями
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Backend:
+- Используется стороннее API для получения данных о фильмах kinopoisk.dev
+- Так же используется [API](https://github.com/vadimli/action_cinema_api) для авторизации и работы с личным кабинетом
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Авторизация:
+- **JWT** (JSON Web Tokens) для аутентификации пользователей
+- **Локальное хранилище** (LocalStorage) для хранения токенов

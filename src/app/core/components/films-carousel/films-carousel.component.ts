@@ -79,8 +79,8 @@ export class FilmsCarouselComponent implements OnInit, OnDestroy {
     this._movieService
       .getMovieByOptions(this.selectionFilms.url)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((value: IApiResponse) => {
-        this.movies = value.docs as IFilm[];
+      .subscribe((value: IApiResponse<IFilm[]>) => {
+        this.movies = value.docs;
       });
   }
 

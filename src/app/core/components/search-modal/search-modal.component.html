@@ -12,9 +12,9 @@
   </span>
 </form>
 
-<ng-container *ngIf="!!movies.length || !!persons.length">
-  <div *ngIf="!!movies.length" class="search-result">
-    <ng-container *ngFor="let movie of movies">
+<ng-container *ngIf="search$ | async as search">
+  <div *ngIf="!!search?.movies?.length" class="search-result">
+    <ng-container *ngFor="let movie of search.movies">
       <a
         *ngIf="!!movie.name && !!movie.poster.url"
         class="search-result__item"
@@ -35,10 +35,10 @@
     </ng-container>
   </div>
 
-  <ng-container *ngIf="!!persons.length">
+  <ng-container *ngIf="!!search?.persons?.length">
     <h2 class="person-header">Персоны</h2>
     <div class="search-result">
-      <ng-container *ngFor="let person of persons">
+      <ng-container *ngFor="let person of search.persons">
         <a class="search-result__item" routerLink="/person/{{ person.id }}" (click)="clickRoute()">
           <img class="search-result__img" [src]="person.photo" alt="preview" />
           <div class="search-result__name">
@@ -50,5 +50,7 @@
     </div>
   </ng-container>
 </ng-container>
+
+
 
 <p-progressSpinner *ngIf="showSpinner" class="spinner"></p-progressSpinner>

@@ -1,10 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ReplaySubject, takeUntil } from 'rxjs';
+import { forkJoin, map, Observable, ReplaySubject, switchMap, takeUntil, tap } from 'rxjs';
 import { MovieService } from '../../../shared/services/movie.service';
 import { IApiResponse } from '../../../shared/models/api-response';
 import { IFilm } from '../../../shared/models/films/film';
 import { IPerson } from '../../../shared/models/films/person';
+
+export interface ISerach {
+  movies: IFilm[] | null;
+  persons: IPerson[] | null;
+}
 
 @Component({
   selector: 'app-search-modal',
@@ -16,43 +21,42 @@ export class SearchModalComponent implements OnInit, OnDestroy {
 
   public form: FormGroup;
 
-  public movies: IFilm[] = [];
-
-  public persons: IPerson[] = [];
+  public search$: Observable<ISerach | null>;
 
   public showSpinner = false;
 
-  constructor(private _movieService: MovieService) {
+  constructor(private _movieService: MovieService) {}
+
+  public ngOnInit(): void {
     this.form = new FormGroup({
       search: new FormControl(null),
     });
-  }
 
-  public ngOnInit(): void {
-    this.form
-      .get('search')
-      .valueChanges.pipe(takeUntil(this.destroy$))
-      .subscribe((value) => {
+    this.search$ = this.form.get('search').valueChanges.pipe(
+      takeUntil(this.destroy$),
+      switchMap((value: string) => {
         if (value.length > 2) {
           this.showSpinner = true;
-          this._movieService
-            .searchMoviesByName(value)
-            .pipe(takeUntil(this.destroy$))
-            .subscribe((res: IApiResponse) => {
-              this.movies = res.docs as IFilm[];
-              this.showSpinner = false;
-            });
 
-          this._movieService
-            .searchPersonByName(value)
-            .pipe(takeUntil(this.destroy$))
-            .subscribe((res: IApiResponse) => {
-              const docs: IPerson[] = res.docs as IPerson[];
-              this.persons = docs.filter((item: IPerson) => !!item.photo) as IPerson[];
-              this.showSpinner = false;
-            });
+          return forkJoin([
+            this._movieService.searchMoviesByName(value),
+            this._movieService.searchPersonByName(value),
+          ]);
+        } else {
+          return [];
         }
-      });
+      }),
+      map(([movieRes, personRes]: [IApiResponse<IFilm[]>, IApiResponse<IPerson[]>] | null) => {
+        if (personRes?.docs.length) {
+          personRes.docs = personRes.docs.filter((item: IPerson) => !!item.photo) as IPerson[];
+        }
+        return {
+          movies: (movieRes?.docs as IFilm[]) ?? null,
+          persons: (personRes?.docs as IPerson[]) ?? null,
+        } as ISerach;
+      }),
+      tap(() => (this.showSpinner = false)),
+    );
   }
 
   public clickRoute(): void {

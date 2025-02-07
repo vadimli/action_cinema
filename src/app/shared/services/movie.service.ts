@@ -6,6 +6,7 @@ import { IApiResponse } from '../models/api-response';
 import { IFilm } from '../models/films/film';
 import { PersonFullInfo } from '../models/person/person-full-info';
 import { IAwardRequest } from '../models/person/award';
+import { IPerson } from '../models/films/person';
 
 export const REQUIRED_FIELDS: string =
   'notNullFields=poster.url&selectFields=poster&selectFields=id&selectFields=name&selectFields=year&selectFields=rating';
@@ -23,8 +24,8 @@ export class MovieService {
     url: string,
     limit: number = 15,
     page: number = 1,
-  ): Observable<IApiResponse> {
-    return this._http.get<IApiResponse>(
+  ): Observable<IApiResponse<IFilm[]>> {
+    return this._http.get<IApiResponse<IFilm[]>>(
       `${environment.apiKinopoiskUrl}movie?${REQUIRED_FIELDS}&page=${page}&limit=${limit}${url}`,
     );
   }
@@ -43,14 +44,14 @@ export class MovieService {
     );
   }
 
-  public searchMoviesByName(query: string): Observable<IApiResponse> {
-    return this._http.get<IApiResponse>(
+  public searchMoviesByName(query: string): Observable<IApiResponse<IFilm[]>> {
+    return this._http.get<IApiResponse<IFilm[]>>(
       `${environment.apiKinopoiskUrl}movie/search?page=1&limit=6&query=${query}`,
     );
   }
 
-  public searchPersonByName(query: string): Observable<IApiResponse> {
-    return this._http.get<IApiResponse>(
+  public searchPersonByName(query: string): Observable<IApiResponse<IPerson[]>> {
+    return this._http.get<IApiResponse<IPerson[]>>(
       `${environment.apiKinopoiskUrl}person/search?page=1&limit=6&query=${query}`,
     );
   }

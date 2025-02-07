@@ -1,4 +1,4 @@
-<ng-container *ngIf="movies; else skeleton">
+<ng-container *ngIf="movies$ | async as movies; else skeleton">
   <p-carousel
     [value]="movies"
     [responsiveOptions]="getResponsiveOptions"

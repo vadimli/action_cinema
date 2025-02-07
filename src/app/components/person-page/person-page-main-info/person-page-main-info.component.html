@@ -9,9 +9,17 @@
     </div>
 
     <img
-      *ngIf="!isMobile"
+      *ngIf="!isMobile && !imgLoadError"
       class="person__img"
       [src]="person.photo || defaultPhoto"
+      (error)="imgLoadError = true"
+      alt="Фото персоны"
+    />
+
+    <img
+      *ngIf="imgLoadError"
+      class="person__img"
+      [src]="defaultPhoto"
       alt="Фото персоны"
     />
     <div class="person__container">

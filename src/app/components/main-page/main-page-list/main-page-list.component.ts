@@ -65,27 +65,62 @@ export class MainPageListComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.initForm();
-    this.setFormValues();
+    this.setFormValuesFromQueryParams();
 
-    this._route.queryParams.pipe(takeUntil(this.destroy$)).subscribe((value: Params) => {
+    this.subscribeToQueryParams();
+    this.subscribeToFormChanges();
+  }
+
+  /**
+   * Инициализация формы.
+   */
+  private initForm(): void {
+    this.form = new FormGroup({
+      genres: new FormControl(),
+      rating: new FormControl(),
+      years: new FormControl(),
+      topKp: new FormControl(false),
+    });
+  }
+
+  /**
+   * Устанавливает значения формы на основе queryParams.
+   */
+  private setFormValuesFromQueryParams(): void {
+    const queryParams = this._route.snapshot.queryParams;
+    this.form.patchValue({
+      genres: this.genres.find((item: SearchItem) => item.slug === queryParams['genre']),
+      rating: this.ratings.find((item: SearchItem) => item.slug === queryParams['rating']),
+      years: this.years.find((item: SearchItem) => item.slug === queryParams['years']),
+      topKp: !!queryParams['topKp'],
+    });
+  }
+
+  /**
+   * Подписывается на изменения queryParams для обновления списка фильмов.
+   */
+  private subscribeToQueryParams(): void {
+    this._route.queryParams.pipe(takeUntil(this.destroy$)).subscribe((params: Params) => {
       const request: FilmListRequest = {
         type: this._route.snapshot.url[0].path,
-        genre: value['type'],
-        rating: value['rating'],
-        years: value['years'],
-        topKp: value['topKp'],
+        genre: params['genre'],
+        rating: params['rating'],
+        years: params['years'],
+        topKp: params['topKp'],
       };
 
       this.header = generateMovieListHeader(request);
       this.url = generateUrlForParams(request);
 
       this.movies = [];
-
-      this.getMovies(24, 1);
-
-      this.notFound = !this.movies.length;
+      this.getMovies(this.limit, this.page);
     });
+  }
 
+  /**
+   * Подписывается на изменения формы для обновления queryParams (только для больших экранов).
+   */
+  private subscribeToFormChanges(): void {
     if (!this.isLargeMobile) {
       this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((value: FilmFilters) => {
         const queryParams: Params = {
@@ -100,70 +135,51 @@ export class MainPageListComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Загружает фильмы по заданным параметрам.
+   * @param limit - Количество фильмов на странице.
+   * @param page - Номер страницы.
+   */
   private getMovies(limit: number, page: number): void {
     this._movieService
       .getMovieByOptions(this.url, limit, page)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((value: IApiResponse) => {
-        this.showSpinner = !!value.docs.length;
+      .subscribe((response: IApiResponse<IFilm[]>) => {
+        this.showSpinner = !!response.docs.length;
 
-        const docs: IFilm[] = value.docs as IFilm[];
-        docs.forEach((item: IFilm) => {
-          const duplicate: boolean = this.movies.some((film: IFilm) => film.id === item.id);
+        const newMovies: IFilm[] = response.docs;
+        this.movies = this.movies.concat(
+          newMovies.filter(
+            (item: IFilm) =>
+              !this.movies.some((film: IFilm) => film.id === item.id) && !!item.poster.url,
+          ),
+        );
 
-          if (!duplicate) {
-            this.movies.push(item);
-          }
-        });
+        this.notFound = !this.movies.length;
       });
   }
 
-  private initForm(): void {
-    this.form = new FormGroup({
-      genres: new FormControl(),
-      rating: new FormControl(),
-      years: new FormControl(),
-      topKp: new FormControl(false),
-    });
-  }
-
-  private setFormValues(): void {
-    this.form
-      .get('genres')
-      .setValue(
-        GENRES.find((item: SearchItem) => item.slug === this._route.snapshot.queryParams['genre']),
-      );
-    this.form.get('topKp').setValue(!!this._route.snapshot.queryParams['topKp']);
-    this.form
-      .get('years')
-      .setValue(
-        this.years.find(
-          (item: SearchItem) => item.slug === this._route.snapshot.queryParams['years'],
-        ),
-      );
-  }
-
-  // Метод, который будет подгружать новые данные.
   /**
-   * Обновляет параметры загрузки, загружает обновлённые данные
-   * @param e Событие - срабатывает в конце списка.
+   * Обрабатывает событие скролла для подгрузки новых фильмов.
+   * @param event - Событие скролла.
    */
-  public onScroll(e: unknown): void {
-    if (e) {
-      this.getMovies(this.limit, this.page);
+  public onScroll(event: unknown): void {
+    if (event) {
       this.page++;
+      this.getMovies(this.limit, this.page);
     }
   }
 
-  public ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
+  /**
+   * Сбрасывает форму.
+   */
   public formReset(): void {
     this.form.reset();
   }
 
+  /**
+   * Применяет фильтры и обновляет queryParams.
+   */
   public submit(): void {
     const formValue: FilmFilters = this.form.value;
     const queryParams: Params = {
@@ -174,7 +190,11 @@ export class MainPageListComponent implements OnInit, OnDestroy {
     };
 
     this._router.navigate([], { queryParams });
-
     this.showFiltersModal = false;
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

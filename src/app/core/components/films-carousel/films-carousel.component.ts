@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MovieService } from '../../../shared/services/movie.service';
-import { ReplaySubject, takeUntil } from 'rxjs';
+import { map, Observable, ReplaySubject, takeUntil } from 'rxjs';
 import { IApiResponse } from '../../../shared/models/api-response';
 import { IFilm } from '../../../shared/models/films/film';
 import { IShortFilmInfo } from '../../../shared/models/films/short-film-info';
@@ -23,7 +23,7 @@ export class FilmsCarouselComponent implements OnInit, OnDestroy {
 
   @Input() public amountItem = 8;
 
-  public movies: IFilm[] | IShortFilmInfo[];
+  public movies$: Observable<IFilm[] | IShortFilmInfo[]>;
 
   public get isDesktop(): boolean {
     return this._platform.isDesktop();
@@ -76,12 +76,10 @@ export class FilmsCarouselComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
-    this._movieService
-      .getMovieByOptions(this.selectionFilms.url)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((value: IApiResponse<IFilm[]>) => {
-        this.movies = value.docs;
-      });
+    this.movies$ = this._movieService.getMovieByOptions(this.selectionFilms.url).pipe(
+      takeUntil(this.destroy$),
+      map((value: IApiResponse<IFilm[]>) => value.docs),
+    );
   }
 
   public ngOnDestroy(): void {

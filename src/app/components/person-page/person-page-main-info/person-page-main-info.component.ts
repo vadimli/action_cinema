@@ -12,6 +12,7 @@ export class PersonPageMainInfoComponent {
   @Input() public person: PersonFullInfo;
 
   public defaultPhoto: string = defaultPhoto;
+  public imgLoadError = false;
 
   public get isMobile(): boolean {
     return this._platform.isMobile();

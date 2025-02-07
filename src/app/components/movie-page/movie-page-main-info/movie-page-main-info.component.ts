@@ -15,6 +15,7 @@ export class MoviePageMainInfoComponent implements OnInit {
   public trailerId: string;
 
   public showTrailer = false;
+  public imgLoading = true;
 
   public showMovie = false;
 

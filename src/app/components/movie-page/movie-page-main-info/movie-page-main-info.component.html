@@ -5,8 +5,10 @@
       movie?.backdrop?.url || movie?.backdrop?.previewUrl || '../../../../assets/img/cinema.jpg'
     "
     loading="lazy"
+    (load)="imgLoading = false"
     alt="main movie picture"
   />
+  <div *ngIf="imgLoading"></div>
 </div>
 
 <div class="main-info">

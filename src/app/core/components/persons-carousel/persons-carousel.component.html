@@ -11,7 +11,7 @@
   </ng-template>
   <ng-template let-person pTemplate="item">
     <a routerLink="/person/{{ person.id }}" class="carousel">
-      <img class="carousel__img" [src]="person.photo" alt="preview" />
+      <img class="carousel__img" [src]="person.photo" loading="lazy" alt="preview" />
       <span class="carousel__title">{{ person.name }}</span>
       <span class="grey">{{ person.profession }}</span>
     </a>

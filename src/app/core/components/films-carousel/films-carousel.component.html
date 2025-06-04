@@ -22,7 +22,7 @@
     </ng-template>
     <ng-template let-movie pTemplate="item">
       <a routerLink="film/{{ movie.id }}" class="carousel">
-        <img class="carousel__img" [src]="movie.poster.previewUrl" alt="preview" />
+        <img class="carousel__img" [src]="movie.poster.previewUrl" loading="lazy" alt="preview" />
         <div class="badge badge-{{ movie.rating.kp | checkColorRating }}">
           {{ movie.rating.kp | number: '1.1-1' }}
         </div>

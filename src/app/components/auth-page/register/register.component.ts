@@ -10,6 +10,8 @@ import {
 import { Router } from '@angular/router';
 import { AuthService } from '../../../shared/services/auth.service';
 import { catchError, of, ReplaySubject, takeUntil } from 'rxjs';
+import {UserService} from "../../../shared/services/user.service";
+import {AuthResponse} from "../../../shared/models/auth/auth-response";
 
 export interface AuthForm {
   login: string;
@@ -43,6 +45,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private _router: Router,
     private _authService: AuthService,
+    private _userService: UserService,
   ) {}
 
   public ngOnInit(): void {
@@ -69,7 +72,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
           return of(null);
         }),
       )
-      .subscribe(() => {
+      .subscribe((value: AuthResponse) => {
+        this._userService.setUser(value.user);
         this._router.navigate(['/cabinet']);
       });
   }

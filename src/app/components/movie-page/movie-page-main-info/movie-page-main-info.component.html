@@ -52,12 +52,13 @@
       class="p-button-secondary"
       (click)="showTrailer = true"
     ></button>
-    <button
+    <button *ngIf="user"
       pButton
       pRipple
       type="button"
-      icon="pi pi-bookmark"
+      [icon]="currentIcon"
       class="p-button-rounded p-button-secondary"
+      (click)="changeFavorites()"
     ></button>
   </div>
 </div>

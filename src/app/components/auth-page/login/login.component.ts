@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AuthForm } from '../register/register.component';
 import { AuthService } from '../../../shared/services/auth.service';
 import { catchError, of, ReplaySubject, takeUntil } from 'rxjs';
+import {UserService} from "../../../shared/services/user.service";
+import {AuthResponse} from "../../../shared/models/auth/auth-response";
 
 @Component({
   selector: 'app-login',
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private _router: Router,
     private _authService: AuthService,
+    private _userService: UserService,
   ) {}
 
   public ngOnInit(): void {
@@ -49,7 +52,8 @@ export class LoginComponent implements OnInit, OnDestroy {
           return of(null);
         }),
       )
-      .subscribe(() => {
+      .subscribe((value: AuthResponse) => {
+        this._userService.setUser(value.user);
         this._router.navigate(['/cabinet']);
       });
   }
